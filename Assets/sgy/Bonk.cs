@@ -14,8 +14,14 @@ public class Bonk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DoBonk();
+        Destroy(gameObject, 0.5f);
+    }
+
+    public void DoBonk()
+    {
         transform.localScale += new Vector3(0f, -BonkSpeed * Time.deltaTime, 0f);
 
-        Destroy(gameObject,0.5f);
+        
     }
 }
