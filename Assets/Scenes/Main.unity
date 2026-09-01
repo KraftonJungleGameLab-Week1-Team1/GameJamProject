@@ -1610,7 +1610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHP: 100
-  DecreaseSpeed: 0.3
+  DecreaseSpeed: 2
   RoundCount: 0
   CurrentRoundData:
     MinNumber: 0

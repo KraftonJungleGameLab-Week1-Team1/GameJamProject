@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -79,35 +81,48 @@ public class GameManager : MonoBehaviour
         inventoryManager.DeleteItemList();
 
         // 인벤토리 아이템 설정
-        for (int i = 0; i < 40; i++)
+        // 숫자 32개
+        for (int i = 0; i < 32; i++)
         {
             ItemData newItemData = new ItemData();
-            int randomItemType = UnityEngine.Random.Range(0, 2);
-            if (randomItemType == 0)
+
+            newItemData.Type = EItemType.Number;
+            int newNumber = UnityEngine.Random.Range(1, 10); // 1 ~ 9
+
+            // MulNumber가 등장하는 거 방지용 코드
+            while (newNumber == newRoundData.MulNumber)
             {
-                newItemData.Type = EItemType.Number;
-                newItemData.NumberValue = UnityEngine.Random.Range(1, 10); // 1 ~ 9
+                newNumber = UnityEngine.Random.Range(1, 10);
             }
-            else
+            newItemData.NumberValue = newNumber;
+
+            newRoundData.ItemDataList.Add(newItemData);
+        }
+        // 연산자 8개
+        for (int i = 0; i < 8; i++)
+        {
+            ItemData newItemData = new ItemData();
+
+            newItemData.Type = EItemType.Operator;
+            int randomOperatorType = UnityEngine.Random.Range(0, 3);
+            if (randomOperatorType == 0)
             {
-                newItemData.Type = EItemType.Operator;
-                int randomOperatorType = UnityEngine.Random.Range(0, 3);
-                if (randomOperatorType == 0)
-                {
-                    newItemData.OperatorType = EItemOperatorType.Plus;
-                }
-                else if (randomOperatorType == 1)
-                {
-                    newItemData.OperatorType = EItemOperatorType.Minus;
-                }
-                else if (randomOperatorType == 2)
-                {
-                    newItemData.OperatorType = EItemOperatorType.Multiply;
-                }
+                newItemData.OperatorType = EItemOperatorType.Plus;
+            }
+            else if (randomOperatorType == 1)
+            {
+                newItemData.OperatorType = EItemOperatorType.Minus;
+            }
+            else if (randomOperatorType == 2)
+            {
+                newItemData.OperatorType = EItemOperatorType.Multiply;
             }
 
             newRoundData.ItemDataList.Add(newItemData);
         }
+
+        var temp = newRoundData.ItemDataList.OrderBy(item => Guid.NewGuid()).ToList();
+        newRoundData.ItemDataList = temp;
 
         CurrentRoundData = newRoundData;
 
