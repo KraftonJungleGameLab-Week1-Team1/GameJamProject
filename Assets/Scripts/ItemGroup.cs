@@ -1,15 +1,15 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 public class ItemGroup : MonoBehaviour
 {
     public Item OperatorItem;
     public Item ValueItem;
-
-
     public TMP_Text NumberText;
+    public Image GroupBox;
 
       
 
@@ -28,11 +28,24 @@ public class ItemGroup : MonoBehaviour
     {
         OperatorItem = operatorItem;
         ValueItem = valueItem;
+
+        if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
+        {
+            GroupBox.color = Color.red;
+        }
+        else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Minus)
+        {
+            GroupBox.color = Color.green;
+        }
+        else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Multiply)
+        {
+            GroupBox.color = Color.blue;
+        }
     }
 
-    public void PopUpPreResult(int result)
+    public IEnumerator PopUpPreResult(int result)
     {
-        //기호별로 구분하여 수식 계산
+        NumberText.gameObject.SetActive(true);
         if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
         {
             result += ValueItem.ItemData.NumberValue;
@@ -47,5 +60,9 @@ public class ItemGroup : MonoBehaviour
         }
 
         NumberText.text = result.ToString();
+        yield return new WaitForSeconds(0.5f);
+        NumberText.gameObject.SetActive(false);
+
+
     }
 }
