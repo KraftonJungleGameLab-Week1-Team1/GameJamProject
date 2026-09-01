@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] BattleManager battleManager;
+    [SerializeField] ExpressionManager expressionManager;
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -58,8 +60,6 @@ public class GameManager : MonoBehaviour
         isRunningRound = true;
         isPause = true;
 
-        // 수식 칸 비우기
-
         TargetInputType = EItemType.Number;
 
         RoundData newRoundData = new RoundData();
@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour
         // 조건 설정
         newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
+
+        // 인벤토리 비우기
+        inventoryManager.DeleteItemList();
 
         // 인벤토리 아이템 설정
         for (int i = 0; i < 40; i++)
@@ -106,6 +109,7 @@ public class GameManager : MonoBehaviour
 
         // 인벤토리 아이템 등장 연출
         inventoryManager.SetupItemList(CurrentRoundData.ItemDataList);
+        inventoryManager.UpdateHighlight();
 
         isPause = false;
     }
@@ -130,19 +134,35 @@ public class GameManager : MonoBehaviour
     }
 
     // 수식 완성
-    public void CompleteExpression()
+    public IEnumerator IECompleteExpression()
     {
         // 수식 계산 연출
+        yield return expressionManager.CalculateExpression();
 
         // 수식 성공 시 RoundClear()
+        int result = expressionManager.LastNum;
 
-        // 수식 실패 시 인벤토리 원상 복구
+        if(result % CurrentRoundData.MulNumber == 0
+            && result > CurrentRoundData.MinNumber)
+        {
+            RoundClear();
+        }
+        else
+        {
+            // 수식 실패 시 인벤토리 원상 복구
+            inventoryManager.RevisibleItemList();
+        }
+        // 수식 비우기
+        expressionManager.ClearExpression();
+
+        // 하이라이트
+        inventoryManager.UpdateHighlight();
     }
 
-    // 수식 비우기
-    public void DeleteExpression()
+    // 수식 완성
+    public void CompleteExpression()
     {
-        // 인벤토리 원상 복구
+        StartCoroutine(IECompleteExpression());
     }
 
     // 하나의 라운드 성공

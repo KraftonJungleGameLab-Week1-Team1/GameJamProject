@@ -14,8 +14,11 @@ public class Fly : MonoBehaviour
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             rb.isKinematic = false;
-            if (rb != null)
+            if (rb != null) {
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+                Debug.Log("fly 폭발");
+            }
+                
         }
     }
 
@@ -23,7 +26,7 @@ public class Fly : MonoBehaviour
     {
         {
             // Move the object forward along its z axis 1 unit/second.
-            transform.Translate(Vector3.right * flySpeed * Time.deltaTime, Camera.main.transform);
+            transform.Translate(Vector3.forward * flySpeed * Time.deltaTime, Camera.main.transform);
 
             // Move the object upward in world space 1 unit/second.
             transform.Translate(Vector3.up * flySpeed * 0.6f * Time.deltaTime, Space.World);

@@ -10,6 +10,9 @@ public class Item : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Animator animator;
 
+    [SerializeField] Color baseColor;
+    [SerializeField] Color highlightColor;
+
     public void SetClickEvent(UnityAction onClick)
     {
         if (onClick != null)
@@ -29,7 +32,14 @@ public class Item : MonoBehaviour
 
     public void SetHighlight(bool isHighlight)
     {
-
+        if (isHighlight)
+        {
+            button.GetComponent<Image>().color = highlightColor;
+        }
+        else
+        {
+            button.GetComponent<Image>().color = baseColor;
+        }
     }
 
     public void SetAnimTrigger(string param)
