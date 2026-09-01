@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
     // 수식 완성
     public void CompleteExpression()
     {
+        if (expressionManager.ValidateExpression())
         StartCoroutine(IECompleteExpression());
     }
 
