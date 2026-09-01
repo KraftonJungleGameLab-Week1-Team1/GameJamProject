@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
         // 적군 사망시
         if (Input.GetKeyDown(KeyCode.S))
         {   
-            Instantiate(enemyPrefab, parent.position, parent.rotation);
+            Instantiate(enemyPrefab, parent.position, enemyPrefab.transform.rotation);
         }
     }
 }
