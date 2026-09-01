@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using JetBrains.Annotations;
 
 // Applies an explosion force to all nearby rigidbodies
 public class Bomb : MonoBehaviour
@@ -7,17 +8,58 @@ public class Bomb : MonoBehaviour
     public float radius = 5.0F;
     public float power = 10.0F;
 
+    public float upward = 1f;
+
     void Start()
     {
+
+
+
+   
+      
+
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+
         Vector3 explosionPos = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-        foreach (Collider hit in colliders)
+        foreach (Transform child in allChildren)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            Debug.Log(child);
+            
+            child.gameObject.AddComponent<Rigidbody>();
+                if (child == transform) continue;
+                child.transform.SetParent(null);
+                Rigidbody rb = child.GetComponent<Rigidbody>();
+                rb.AddExplosionForce(power, explosionPos, radius, 3.0f);
+                Debug.Log("모든자식리지드바디넣고폭발!");
+                Destroy(child.gameObject, 4f);            
+        }
 
-            if (rb != null)
-                rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+        Rigidbody parent = GetComponent<Rigidbody>();
+        if (parent != null)
+        {
+            Destroy(parent);
+        }
+    }
 
+
+    public void explode()
+    {             
+        Rigidbody parent = GetComponent<Rigidbody>();
+        if (parent != null)
+        {
+            Destroy(parent);
+        }
+
+        Rigidbody[] allChildren = GetComponentsInChildren<Rigidbody>();
+       
+        Vector3 explosionPos = transform.position;
+        foreach(Rigidbody child in allChildren){
+            child.gameObject.AddComponent<Rigidbody>();
+            if (child == transform) continue;
+            child.transform.SetParent(null);
+            Rigidbody rb = child.GetComponent<Rigidbody>();
+            rb.AddExplosionForce(power, explosionPos, radius, upward, ForceMode.Impulse);
+            Debug.Log("모든자식리지드바디넣고폭발!");
         }
     }
 }
