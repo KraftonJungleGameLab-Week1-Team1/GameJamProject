@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour
         isRunningRound = true;
         isPause = true;
 
-        // 수식 칸 비우기
-
         TargetInputType = EItemType.Number;
 
         RoundData newRoundData = new RoundData();
@@ -69,6 +67,9 @@ public class GameManager : MonoBehaviour
         // 조건 설정
         newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
+
+        // 인벤토리 비우기
+        inventoryManager.DeleteItemList();
 
         // 인벤토리 아이템 설정
         for (int i = 0; i < 40; i++)
@@ -153,8 +154,12 @@ public class GameManager : MonoBehaviour
         }
         // 수식 비우기
         expressionManager.ClearExpression();
+
+        // 하이라이트
+        inventoryManager.UpdateHighlight();
     }
 
+    // 수식 완성
     public void CompleteExpression()
     {
         StartCoroutine(IECompleteExpression());

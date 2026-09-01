@@ -107,7 +107,7 @@ public class InventoryManager : MonoBehaviour
         foreach (Item item in itemList)
         {
             item.SetClickEvent(null);
-            Destroy(item);
+            Destroy(item.gameObject);
         }
 
         itemList.Clear();
