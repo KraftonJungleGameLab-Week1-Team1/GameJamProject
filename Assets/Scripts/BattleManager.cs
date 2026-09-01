@@ -10,6 +10,14 @@ public class BattleManager : MonoBehaviour
 
     public ParticleSystem LandingEffectPrefab;
 
+    public Enemy_Die enemy_Die;
+
+
+    void Start()
+    {
+        enemy_Die = GetComponent<Enemy_Die>();
+    }
+
     GameObject player;
     GameObject enemy;
 
@@ -27,7 +35,10 @@ public class BattleManager : MonoBehaviour
 
     public void Win()
     {
-        Destroy(enemy);
+
+        enemy_Die.Defeated();
+
+        //Destroy(enemy);
     }
 
     public void Lose()
@@ -35,3 +46,4 @@ public class BattleManager : MonoBehaviour
         Destroy(player);
     }
 }
+
