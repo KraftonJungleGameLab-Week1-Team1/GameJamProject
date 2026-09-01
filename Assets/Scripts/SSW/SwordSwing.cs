@@ -11,7 +11,7 @@ public class SwordSwing : MonoBehaviour
     
     void Start()
     {
-        StartCoroutine(SwingAttack(new Vector3(-44.595f, -48.9f, -109.27f)));
+        StartCoroutine(SwingAttack(new Vector3(-44.595f, -48.9f, -109.27f), new Vector3(0.783f, 1.628f, 0.498f)));
     }
 
     // void Update()
@@ -22,10 +22,12 @@ public class SwordSwing : MonoBehaviour
         
     // }
 
-    IEnumerator SwingAttack(Vector3 angle)
+    IEnumerator SwingAttack(Vector3 angle, Vector3 position)
     {
         Quaternion startRotation = transform.rotation;
         Quaternion endRotation = Quaternion.Euler(angle);
+        Vector3 startPosition = transform.position;
+        // Vector3 endPosition = Vector3.(position);
         float timer = 0f;
 
         while (timer < swingTime)
