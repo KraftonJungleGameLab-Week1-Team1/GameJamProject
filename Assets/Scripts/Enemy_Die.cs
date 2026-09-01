@@ -20,23 +20,27 @@ public class Enemy_Die : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("pressed");
+            Defeated();
+            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        }
     }
-
     public void Defeated()
     {
-         
+        Debug.Log("pressed");
         RandDieEffect = Random.Range(1, 4);
         switch (RandDieEffect)
         {
             case 1:
-                FlyEffct.DoFly();
+                FlyEffct.FlyFlagOn();
                 break;
             case 2:
                 BombEffect.explode();
                 break;
             case 3:
-                BonkEffect.DoBonk();
+                BonkEffect.BonkFlagOn();
                 break;
         }
 

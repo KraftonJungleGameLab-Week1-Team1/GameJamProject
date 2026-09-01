@@ -4,18 +4,22 @@ public class Fly : MonoBehaviour
 {
     public float flySpeed = 10f;
     public float radius = 5.0F;
-    public float power = 10.0F;
+    public float power = 50.0F;
+
+    public bool FlyFlag = false;
 
     void Start()
     {
-       
+        FlyFlag = false;
     }
 
     void Update()
     {
+        if(FlyFlag == true)
         {
             DoFly();
         }
+        
     }
 
     public void DoFly()
@@ -27,5 +31,10 @@ public class Fly : MonoBehaviour
         transform.Translate(Vector3.up * flySpeed * 0.6f * Time.deltaTime, Space.World);
 
         Destroy(gameObject,3f);
+    }
+
+    public void FlyFlagOn()
+    {
+        FlyFlag = true;
     }
 }

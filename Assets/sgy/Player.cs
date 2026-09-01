@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-            Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        //if (Input.GetMouseButtonDown(1))
+          //  Instantiate(slash, Body.transform.position, Body.transform.rotation);
     }
 
     public void DoAttack()
