@@ -27,8 +27,8 @@ public class ItemData
     public EItemType Type;
 
     // Number일 경우
-    public int numberValue;
+    public int NumberValue;
 
     // Operator일 경우
-    public EItemOperatorType operatorType;
+    public EItemOperatorType OperatorType;
 }
