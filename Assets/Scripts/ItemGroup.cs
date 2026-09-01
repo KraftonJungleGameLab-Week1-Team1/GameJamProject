@@ -1,5 +1,7 @@
-using UnityEngine;
+using System.Collections;
 using TMPro;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ItemGroup : MonoBehaviour
 {
@@ -7,16 +9,9 @@ public class ItemGroup : MonoBehaviour
     public Item ValueItem;
 
 
-    public TMP_Text numberText;
+    public TMP_Text NumberText;
 
-    
-
-
-    public ItemGroup(Item operatorItem, Item valueItem)
-    {
-        OperatorItem = operatorItem;
-        ValueItem = valueItem;
-    }
+      
 
     void Start()
     {
@@ -29,28 +24,28 @@ public class ItemGroup : MonoBehaviour
         
     }
 
+    public void SetItemGroup(Item operatorItem, Item valueItem)
+    {
+        OperatorItem = operatorItem;
+        ValueItem = valueItem;
+    }
+
     public void PopUpPreResult(int result)
     {
         //기호별로 구분하여 수식 계산
-        switch (OperatorItem.ItemData.OperatorType)
+        if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
         {
-            case EItemOperatorType.Plus:
-            {
-                result += OperatorItem.ItemData.NumberValue;
-                break;
-            }
-            case EItemOperatorType.Minus:
-            {
-                result -= OperatorItem.ItemData.NumberValue;
-                    break;
-            }
-            case EItemOperatorType.Multiply:
-            {
-                result *= OperatorItem.ItemData.NumberValue;
-                    break;
-            }
+            result += ValueItem.ItemData.NumberValue;
+        }
+        else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Minus)
+        {
+            result -= ValueItem.ItemData.NumberValue;
+        }
+        else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Multiply)
+        {
+            result *= ValueItem.ItemData.NumberValue;
         }
 
-        numberText.text = result.ToString();
+        NumberText.text = result.ToString();
     }
 }
