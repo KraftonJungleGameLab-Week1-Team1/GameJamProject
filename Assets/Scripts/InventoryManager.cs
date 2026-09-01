@@ -66,11 +66,11 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.ItemData.Type == GameManager.Instance.TargetInputType)
             {
-                item.SetHighlight(true);
+                item.SetHighlight(false);
             }
             else
             {
-                item.SetHighlight(false);
+                item.SetHighlight(true);
             }
         }
     }

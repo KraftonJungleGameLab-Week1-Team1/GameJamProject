@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         // 인벤토리 아이템 등장 연출
         inventoryManager.SetupItemList(CurrentRoundData.ItemDataList);
+        inventoryManager.UpdateHighlight();
 
         isPause = false;
     }
