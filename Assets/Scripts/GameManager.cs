@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
+    [SerializeField] BattleManager battleManager;
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -44,6 +45,9 @@ public class GameManager : MonoBehaviour
     {
         RoundCount = 1;
         CurrentHP = MaxHP;
+
+        // 플레이어 생성
+        battleManager.SpawnPlayer();
 
         StartRound();
     }
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour
         CurrentRoundData = newRoundData;
 
         // 전투 등장 연출
+        battleManager.SpawnEnemy();
 
         // 인벤토리 아이템 등장 연출
         inventoryManager.SetupItemList(CurrentRoundData.ItemDataList);
@@ -144,6 +149,7 @@ public class GameManager : MonoBehaviour
     public void RoundClear()
     {
         // 전투 성공 연출
+        battleManager.Win();
 
         // 다음 라운드
         RoundCount++;
@@ -154,6 +160,9 @@ public class GameManager : MonoBehaviour
     public void RoundFail()
     {
         // 전투 실패 연출
+        battleManager.Lose();
+
+        isRunningRound = false;
 
         EndGame();
     }
