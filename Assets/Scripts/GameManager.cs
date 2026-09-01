@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +10,17 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    [Header("Settings")]
+    public float MaxHP = 100;
+    public float DecreaseSpeed = 0.3f;
+
+    [Header("InGame")]
     public int RoundCount;
     public RoundData CurrentRoundData;
-
-    public float MaxHP = 100;
     public float CurrentHP;
-    public float DecreaseSpeed = 0.3f;
+
+    [Header("References")]
+    [SerializeField] InventoryManager inventoryManager;
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -22,6 +28,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartMain();
+
+        /* @@테스트용@@ 에디터 실행 시 바로 시작 */
+        StartGame();
     }
 
     void StartMain()
@@ -49,23 +58,23 @@ public class GameManager : MonoBehaviour
         RoundData newRoundData = new RoundData();
 
         // 조건 설정
-        newRoundData.MinNumber = Random.Range(15, 21); // 15 ~ 20
-        newRoundData.MulNumber = Random.Range(3, 10); // 3 ~ 9
+        newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
+        newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
 
         // 인벤토리 아이템 설정
         for (int i = 0; i < 40; i++)
         {
             ItemData newItemData = new ItemData();
-            int randomItemType = Random.Range(0, 2);
+            int randomItemType = UnityEngine.Random.Range(0, 2);
             if (randomItemType == 0)
             {
                 newItemData.Type = EItemType.Number;
-                newItemData.NumberValue = Random.Range(1, 10); // 1 ~ 9
+                newItemData.NumberValue = UnityEngine.Random.Range(1, 10); // 1 ~ 9
             }
             else
             {
                 newItemData.Type = EItemType.Operator;
-                int randomOperatorType = Random.Range(0, 3);
+                int randomOperatorType = UnityEngine.Random.Range(0, 3);
                 if (randomOperatorType == 0)
                 {
                     newItemData.OperatorType = EItemOperatorType.Plus;
@@ -88,6 +97,7 @@ public class GameManager : MonoBehaviour
         // 전투 등장 연출
 
         // 인벤토리 아이템 등장 연출
+        inventoryManager.SetupItemList(CurrentRoundData.ItemDataList);
 
         isPause = false;
     }
@@ -152,6 +162,7 @@ public class GameManager : MonoBehaviour
     }
 }
 
+[Serializable]
 public class RoundData
 {
     public float MinNumber; // 최소 숫자 조건
