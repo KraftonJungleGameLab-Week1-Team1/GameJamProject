@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] BattleManager battleManager;
+    [SerializeField] ExpressionManager expressionManager;
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -130,19 +132,31 @@ public class GameManager : MonoBehaviour
     }
 
     // 수식 완성
-    public void CompleteExpression()
+    public IEnumerator IECompleteExpression()
     {
         // 수식 계산 연출
+        yield return expressionManager.CalculateExpression();
 
         // 수식 성공 시 RoundClear()
+        int result = expressionManager.LastNum;
 
-        // 수식 실패 시 인벤토리 원상 복구
+        if(result % CurrentRoundData.MulNumber == 0
+            && result > CurrentRoundData.MinNumber)
+        {
+            RoundClear();
+        }
+        else
+        {
+            // 수식 실패 시 인벤토리 원상 복구
+            inventoryManager.RevisibleItemList();
+        }
+        // 수식 비우기
+        expressionManager.ClearExpression();
     }
 
-    // 수식 비우기
-    public void DeleteExpression()
+    public void CompleteExpression()
     {
-        // 인벤토리 원상 복구
+        StartCoroutine(IECompleteExpression());
     }
 
     // 하나의 라운드 성공
