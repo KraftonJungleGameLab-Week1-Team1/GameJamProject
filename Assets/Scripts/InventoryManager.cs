@@ -27,7 +27,8 @@ public class InventoryManager : MonoBehaviour
                     if (GameManager.Instance.TargetInputType == data.Type)
                     {
                         expressionManager.AddItem(data);
-                        Debug.Log($"아이템 클릭 ({data.Type.ToString()} / {data.NumberValue} / {data.OperatorType.ToString()}");
+                        Debug.Log($"아이템 클릭 ({data.Type.ToString()} / {data.NumberValue} / {data.OperatorType.ToString()})");
+
                         newItem.SetVisible(false);
 
                         // 선택 가능한 거 바꿔주기
@@ -65,11 +66,11 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.ItemData.Type == GameManager.Instance.TargetInputType)
             {
-                item.SetHighlight(true);
+                item.SetHighlight(false);
             }
             else
             {
-                item.SetHighlight(false);
+                item.SetHighlight(true);
             }
         }
     }
