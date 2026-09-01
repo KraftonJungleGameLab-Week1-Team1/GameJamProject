@@ -9,11 +9,19 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
+      propertyPath: ItemData.Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
       propertyPath: itemData.Type
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
       propertyPath: itemData.Value
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
+      propertyPath: ItemData.NumberValue
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
