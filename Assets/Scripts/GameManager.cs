@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public RoundData CurrentRoundData;
     public float CurrentHP;
     public EItemType TargetInputType = EItemType.Number;
+    public ResultUI resultUI;
 
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
@@ -191,6 +192,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         // 결과 화면 UI 보여주기
+        resultUI.ResultPanel.SetActive(true);
     }
 }
 
