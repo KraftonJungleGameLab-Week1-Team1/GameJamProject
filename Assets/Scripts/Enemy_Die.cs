@@ -20,12 +20,7 @@ public class Enemy_Die : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("pressed");
-            Defeated();
-            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
-        }
+        
     }
     public void Defeated()
     {

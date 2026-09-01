@@ -17,12 +17,19 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        enemy_Die = GetComponent<Enemy_Die>();
-        player_attack = GetComponent<Player>();
+        //enemy_Die = GetComponent<Enemy_Die>();
+        //player_attack = GetComponent<Player>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("pressed");
+            Win();
+            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        }
+
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("pressed");
@@ -37,6 +44,7 @@ public class BattleManager : MonoBehaviour
     public void SpawnPlayer()
     {
         player = Instantiate(playerPrefab, playerSpawnPoint.position, playerPrefab.transform.rotation);
+        player_attack = player.GetComponent<Player>();
         Instantiate(LandingEffectPrefab, playerSpawnPoint.position, LandingEffectPrefab.transform.rotation);
     }
 
@@ -44,6 +52,7 @@ public class BattleManager : MonoBehaviour
     {
         
         enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
+        enemy_Die = enemy.GetComponent<Enemy_Die>();
         Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
     }
 
