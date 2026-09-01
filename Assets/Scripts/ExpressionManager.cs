@@ -56,17 +56,17 @@ public class ExpressionManager : MonoBehaviour
 			{
 				case EItemOperatorType.Plus:
 				{
-					result += itemGroup.OperatorItem.ItemData.NumberValue;
+					result += itemGroup.ValueItem.ItemData.NumberValue;
 					break;
 				}
 				case EItemOperatorType.Minus:
 				{
-                    result -= itemGroup.OperatorItem.ItemData.NumberValue;
+                    result -= itemGroup.ValueItem.ItemData.NumberValue;
                     break;
 				}
 				case EItemOperatorType.Multiply:
 				{
-					result *= itemGroup.OperatorItem.ItemData.NumberValue;
+					result *= itemGroup.ValueItem.ItemData.NumberValue;
                     break;
 				}
 			}
