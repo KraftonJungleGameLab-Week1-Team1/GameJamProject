@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,11 @@ public class ExpressionManager : MonoBehaviour
 	public List<ItemGroup> ItemGroupList;
 	public ItemGroup ItemGroupPrefab;
 	public GameObject ExpressionPanel;
+
+    //Expression에 넣은 아이템의 수
 	public int AddCount = 0;
+    //맨 마지막 Itemgroup을 제외한 수들의 연산 결과
+	public int LastNum = 0;
 	
 	void Start()
 	{
@@ -21,21 +26,30 @@ public class ExpressionManager : MonoBehaviour
 	}
 
     public void AddItem(ItemData itemData)
-    {
+    { 
 
 		Item itemObject = ItemFactory.Instance.Instantiate(itemData);
 		itemObject.transform.SetParent(ExpressionPanel.transform);
         ItemList.Add(itemObject);
 		++AddCount;
 
-		if (AddCount % 2 == 1 && AddCount != 1)
+        if (AddCount == 3)
+        {
+            GroupFirstItems();
+        }
+        else if (AddCount % 2 == 1 && AddCount != 1)
 		{
-			MergeItem();
+			GroupItems();
 		}
+        else if(AddCount == 1)
+        {
+            LastNum = itemData.NumberValue;
+            Debug.Log(LastNum);
+        }
     }
 
 
-	public void MergeItem()
+	public void GroupItems()
     {
         ItemGroup itemGroup = Instantiate(ItemGroupPrefab, ExpressionPanel.transform);
         itemGroup.SetItemGroup(ItemList[ItemList.Count - 2], ItemList[ItemList.Count - 1]);
@@ -44,42 +58,99 @@ public class ExpressionManager : MonoBehaviour
         ItemList[ItemList.Count - 1].transform.SetParent(itemGroup.transform);
 		LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
 
+        StartCoroutine(itemGroup.PopUpPreResult(LastNum));
+
+        switch (itemGroup.OperatorItem.ItemData.OperatorType)
+        {
+            case EItemOperatorType.Plus:
+                {
+                    LastNum += itemGroup.ValueItem.ItemData.NumberValue;
+                    break;
+                }
+            case EItemOperatorType.Minus:
+                {
+                    LastNum -= itemGroup.ValueItem.ItemData.NumberValue;
+                    break;
+                }
+            case EItemOperatorType.Multiply:
+                {
+                    LastNum *= itemGroup.ValueItem.ItemData.NumberValue;
+                    break;
+                }
+        }
+    }
+
+    public void GroupFirstItems()
+    {
+        ItemGroup itemGroup = Instantiate(ItemGroupPrefab, ExpressionPanel.transform);
+        itemGroup.SetItemGroup(ItemList[1], ItemList[2]);
+        ItemGroupList.Add(itemGroup);
+        ItemList[0].transform.SetParent(itemGroup.transform);
+        ItemList[1].transform.SetParent(itemGroup.transform);
+        ItemList[2].transform.SetParent(itemGroup.transform);
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
+
+        StartCoroutine(itemGroup.PopUpPreResult(LastNum));
+
+        switch (itemGroup.OperatorItem.ItemData.OperatorType)
+        {
+            case EItemOperatorType.Plus:
+                {
+                    LastNum += itemGroup.ValueItem.ItemData.NumberValue;
+                    break;
+                }
+            case EItemOperatorType.Minus:
+                {
+                    LastNum -= itemGroup.ValueItem.ItemData.NumberValue;
+                    break;
+                }
+            case EItemOperatorType.Multiply:
+                {
+                    LastNum *= itemGroup.ValueItem.ItemData.NumberValue;
+                    break;
+                }
+        }
+    }
+
+    
+
+    public void ClearExpression()
+	{
+		LastNum = 0;
+		AddCount = 0;
 
     }
 
-	public void ClearExpression()
-	{
-	}
-
 	public void CompleteExpression()
 	{
-		int result = ItemList[0].ItemData.NumberValue;
+        StartCoroutine(CalculateExpression());
+    }
 
-		foreach (ItemGroup itemGroup in ItemGroupList)
-		{
-            //루프마다 계산값을 PopUp
-            itemGroup.PopUpPreResult(result);
+    public IEnumerator CalculateExpression()
+    {
+        int result = ItemList[0].ItemData.NumberValue;
+        foreach (ItemGroup itemGroup in ItemGroupList)
+        {
+            yield return StartCoroutine(itemGroup.PopUpPreResult(result));
 
-            //기호별로 구분하여 수식 계산
             switch (itemGroup.OperatorItem.ItemData.OperatorType)
-			{
-				case EItemOperatorType.Plus:
-				{
-					result += itemGroup.ValueItem.ItemData.NumberValue;
-					break;
-				}
-				case EItemOperatorType.Minus:
-				{
-                    result -= itemGroup.ValueItem.ItemData.NumberValue;
-                    break;
-				}
-				case EItemOperatorType.Multiply:
-				{
-					result *= itemGroup.ValueItem.ItemData.NumberValue;
-                    break;
-				}
-			}
+            {
+                case EItemOperatorType.Plus:
+                    {
+                        result += itemGroup.ValueItem.ItemData.NumberValue;
+                        break;
+                    }
+                case EItemOperatorType.Minus:
+                    {
+                        result -= itemGroup.ValueItem.ItemData.NumberValue;
+                        break;
+                    }
+                case EItemOperatorType.Multiply:
+                    {
+                        result *= itemGroup.ValueItem.ItemData.NumberValue;
+                        break;
+                    }
+            }
         }
-        Debug.Log(result);
     }
 }
