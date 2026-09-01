@@ -3,7 +3,6 @@ using UnityEngine;
 public class Fly : MonoBehaviour
 {
     public float flySpeed = 10f;
-
     public float radius = 5.0F;
     public float power = 10.0F;
 

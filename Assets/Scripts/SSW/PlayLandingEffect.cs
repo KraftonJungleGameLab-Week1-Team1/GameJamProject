@@ -17,7 +17,6 @@ public class PlayLandingEffect : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("발동");
-        Instantiate(LandingEffect, other.transform.position, LandingEffect.transform.rotation);
+        // Instantiate(LandingEffect, other.transform.position, LandingEffect.transform.rotation);
     }
 }
