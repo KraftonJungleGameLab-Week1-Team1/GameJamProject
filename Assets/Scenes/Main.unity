@@ -892,7 +892,6 @@ GameObject:
   m_Component:
   - component: {fileID: 617399688}
   - component: {fileID: 617399689}
-  - component: {fileID: 617399690}
   m_Layer: 0
   m_Name: '@GameManager'
   m_TagString: Untagged
@@ -935,21 +934,7 @@ MonoBehaviour:
     MulNumber: 0
     ItemDataList: []
   CurrentHP: 0
-  inventoryManager: {fileID: 238503749}
---- !u!114 &617399690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617399687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05efa8fff8dca8f49826bed9ff20bbff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemList: []
-  itemGroupList: []
+  inventoryManager: {fileID: 0}
 --- !u!1 &819476694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003385356}
+  - component: {fileID: 1003385357}
   m_Layer: 5
   m_Name: Expression
   m_TagString: Untagged
@@ -1261,6 +1247,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1003385357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003385355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05efa8fff8dca8f49826bed9ff20bbff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemList: []
+  ItemGroupList: []
+  ItemGroupPrefab: {fileID: 5462592726775657710, guid: b51c80a2acb25644fbb1a3b7c8c589f2, type: 3}
+  ExpressionPanel: {fileID: 45446021}
 --- !u!1 &1070271271
 GameObject:
   m_ObjectHideFlags: 0
