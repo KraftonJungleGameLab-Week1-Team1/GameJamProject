@@ -11,7 +11,11 @@ public class ItemGroup : MonoBehaviour
     public TMP_Text NumberText;
     public Image GroupBox;
 
-      
+    public Color PlusColor;
+    public Color MinusColor;
+    public Color MultiplyColor;
+
+
 
     void Start()
     {
@@ -28,18 +32,22 @@ public class ItemGroup : MonoBehaviour
     {
         OperatorItem = operatorItem;
         ValueItem = valueItem;
+        SetBoxColor();
+    }
 
+    public void SetBoxColor()
+    {
         if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
         {
             GroupBox.color = Color.red;
         }
         else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Minus)
         {
-            GroupBox.color = Color.green;
+            GroupBox.color = Color.blue;
         }
         else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Multiply)
         {
-            GroupBox.color = Color.blue;
+            GroupBox.color = Color.green;
         }
     }
 

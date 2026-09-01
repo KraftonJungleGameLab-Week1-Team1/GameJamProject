@@ -292,3 +292,6 @@ MonoBehaviour:
   ValueItem: {fileID: 0}
   NumberText: {fileID: 3986379408135789035}
   GroupBox: {fileID: 7126844226708594951}
+  PlusColor: {r: 1, g: 0, b: 0, a: 0}
+  MinusColor: {r: 0, g: 0.14067984, b: 1, a: 0}
+  MultiplyColor: {r: 0, g: 1, b: 0.049153566, a: 0}
