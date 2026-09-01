@@ -10,6 +10,8 @@ public class ExpressionManager : MonoBehaviour
 	public ItemGroup ItemGroupPrefab;
 	public GameObject ExpressionPanel;
 
+    public ScrollRect HorizontalScrollRect;
+
     //Expression에 넣은 아이템의 수
 	public int AddCount = 0;
     //맨 마지막 Itemgroup을 제외한 수들의 연산 결과
@@ -24,6 +26,11 @@ public class ExpressionManager : MonoBehaviour
 	{
 		
 	}
+
+    public void SetScrollPosition()
+    {
+        HorizontalScrollRect.content.transform.localPosition = Vector3.zero;
+    }
 
     public void AddItem(ItemData itemData)
     { 
@@ -81,7 +88,7 @@ public class ExpressionManager : MonoBehaviour
 
 
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
-
+        SetScrollPosition();
 
 
 
