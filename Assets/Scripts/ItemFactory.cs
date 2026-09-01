@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemFactory : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class ItemFactory : MonoBehaviour
         Instance = this;
     }
 
-    public Item Instantiate(ItemData data)
+    public Item Instantiate(ItemData data, UnityAction onClick = null)
     {
         Item item = null;
 
@@ -40,6 +41,8 @@ public class ItemFactory : MonoBehaviour
                 item = Instantiate(ItemMultiplyPrefab);
             }
         }
+
+        item.SetClickEvent(onClick);
 
         return item;
     }

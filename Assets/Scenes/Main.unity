@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemListParentTr: {fileID: 238503747}
+  expressionManager: {fileID: 1003385357}
 --- !u!1 &248878040
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +935,7 @@ MonoBehaviour:
     MulNumber: 0
     ItemDataList: []
   CurrentHP: 0
-  inventoryManager: {fileID: 0}
+  inventoryManager: {fileID: 238503749}
 --- !u!1 &819476694
 GameObject:
   m_ObjectHideFlags: 0
