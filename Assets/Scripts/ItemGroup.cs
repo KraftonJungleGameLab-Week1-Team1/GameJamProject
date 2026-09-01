@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -14,6 +15,11 @@ public class ItemGroup : MonoBehaviour
     public Color PlusColor;
     public Color MinusColor;
     public Color MultiplyColor;
+
+    public float OriginFontSize;
+
+    public float SizeUpSpeed;
+    public float SizeDownSpeed;
 
     void Start()
     {
@@ -52,6 +58,7 @@ public class ItemGroup : MonoBehaviour
     public IEnumerator PopUpPreResult(int result)
     {
         NumberText.gameObject.SetActive(true);
+        OriginFontSize = NumberText.fontSize;
         if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
         {
             result += ValueItem.ItemData.NumberValue;
@@ -66,8 +73,25 @@ public class ItemGroup : MonoBehaviour
         }
 
         NumberText.text = result.ToString();
-        yield return new WaitForSeconds(0.5f);
+        float flag = 0f;
+        NumberText.fontSize = flag;
+        while (flag < 1f)
+        {
+            flag += Time.deltaTime * SizeUpSpeed;
+            yield return new WaitForSeconds(0.01f);
+            NumberText.fontSize = OriginFontSize * flag;
+        }
+        yield return new WaitForSeconds(0.2f);
+
+        while (flag > 0f)
+        {
+            flag -= Time.deltaTime * SizeDownSpeed;
+            yield return new WaitForSeconds(0.01f);
+            NumberText.fontSize = OriginFontSize * flag;
+        }
+
         NumberText.gameObject.SetActive(false);
+        NumberText.fontSize = OriginFontSize;
 
 
     }
