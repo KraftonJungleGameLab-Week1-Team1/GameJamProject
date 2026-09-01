@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public void Enemy_die()
     { 
         //die_Effect();
-        Enemy_count = Enemy_count + 1;
+        //Enemy_count = Enemy_count + 1;
         //다음적 불러오기;
     }
 }

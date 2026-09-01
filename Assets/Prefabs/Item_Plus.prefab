@@ -13,6 +13,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
+      propertyPath: itemData.OperatorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200421861706268431, guid: 956a6b50f54113b4d95bb47465c6f183, type: 3}
       propertyPath: itemData.operatorType
       value: 1
       objectReference: {fileID: 0}

@@ -28,7 +28,7 @@ public class HPbar : MonoBehaviour
     //플레이어 코드
     void heal_Player()
     {
-        currentHP = currentHP + (log(enemy.MaxHealth) * (6 + 0.4 * enemy_count));
+        //currentHP = currentHP + (log(enemy.MaxHealth) * (6 + 0.4 * enemy_count));
     }
     void Update()
     {
@@ -45,7 +45,7 @@ public class HPbar : MonoBehaviour
 
     public void Player_die()
     {
-        if(currntHP < 0)
+       // if(currntHP < 0)
         {
             //리트라이UI 띄우기
         }
