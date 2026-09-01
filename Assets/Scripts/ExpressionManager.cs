@@ -29,7 +29,7 @@ public class ExpressionManager : MonoBehaviour
 
     public void SetScrollPosition()
     {
-        HorizontalScrollRect.content.transform.localPosition = Vector3.zero;
+
     }
 
     public void AddItem(ItemData itemData)
@@ -108,6 +108,14 @@ public class ExpressionManager : MonoBehaviour
         ItemList.Clear();
         ItemGroupList.Clear();
         GameManager.Instance.TargetInputType = EItemType.Number;
+    }
+
+    public bool ValidateExpression()
+    {
+        if (ItemList[ItemList.Count - 1].ItemData.Type == EItemType.Number)
+        { return true; }
+        else
+        { return false; }
     }
 
     public IEnumerator CalculateExpression()
