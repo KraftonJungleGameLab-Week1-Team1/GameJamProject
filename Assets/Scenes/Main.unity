@@ -1959,6 +1959,7 @@ MonoBehaviour:
   ItemGroupList: []
   ItemGroupPrefab: {fileID: 5462592726775657710, guid: b51c80a2acb25644fbb1a3b7c8c589f2, type: 3}
   ExpressionPanel: {fileID: 45446021}
+  HorizontalScrollRect: {fileID: 315490958}
   AddCount: 0
   LastNum: 0
 --- !u!1 &1070271271
