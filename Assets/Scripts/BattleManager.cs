@@ -21,6 +21,16 @@ public class BattleManager : MonoBehaviour
         player_attack = GetComponent<Player>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log("pressed");
+            SpawnEnemy();
+            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        }
+    }
+
     GameObject player;
     GameObject enemy;
 
@@ -32,6 +42,7 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        
         enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
         Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
     }

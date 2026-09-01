@@ -687,6 +687,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1767672147545626262}
   - component: {fileID: 8919124382036243924}
+  - component: {fileID: 3442028144051443942}
+  - component: {fileID: 9132876105257227125}
+  - component: {fileID: 8367530547301766334}
+  - component: {fileID: 1325901217856269347}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -744,6 +748,68 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3442028144051443942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958447847897110782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b6365e332834748815620964a64fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BattleManager: {fileID: 0}
+  RandDieEffect: 0
+  FlyEffct: {fileID: 8367530547301766334}
+  BombEffect: {fileID: 1325901217856269347}
+  BonkEffect: {fileID: 9132876105257227125}
+--- !u!114 &9132876105257227125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958447847897110782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba25aaa5909eb1439cfac2d91f91f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BonkSpeed: 2
+  BonkFlag: 0
+--- !u!114 &8367530547301766334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958447847897110782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55937c6eff97ad42893a2929f48e9f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpeed: 20
+  radius: 5
+  power: 50
+  FlyFlag: 1
+--- !u!114 &1325901217856269347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958447847897110782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac2c11d9ff7a754db8d3acc43311928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 20
+  power: 700
+  upward: 30
 --- !u!1 &5352534350776222781
 GameObject:
   m_ObjectHideFlags: 0
