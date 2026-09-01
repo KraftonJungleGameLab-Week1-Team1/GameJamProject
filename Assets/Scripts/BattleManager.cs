@@ -12,10 +12,13 @@ public class BattleManager : MonoBehaviour
 
     public Enemy_Die enemy_Die;
 
+    public Player player_attack;
+
 
     void Start()
     {
         enemy_Die = GetComponent<Enemy_Die>();
+        player_attack = GetComponent<Player>();
     }
 
     GameObject player;
@@ -37,7 +40,7 @@ public class BattleManager : MonoBehaviour
     {
 
         enemy_Die.Defeated();
-
+        player_attack.DoAttack();
         //Destroy(enemy);
     }
 
