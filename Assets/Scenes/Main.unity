@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemListParentTr: {fileID: 238503747}
   expressionManager: {fileID: 1003385357}
+  gridLayoutGroup: {fileID: 238503748}
 --- !u!1 &248878040
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +937,7 @@ MonoBehaviour:
     MulNumber: 0
     ItemDataList: []
   CurrentHP: 0
+  TargetInputType: 1
   inventoryManager: {fileID: 238503749}
 --- !u!1 &620722712
 GameObject:
@@ -1535,6 +1537,7 @@ MonoBehaviour:
   ItemGroupPrefab: {fileID: 5462592726775657710, guid: b51c80a2acb25644fbb1a3b7c8c589f2, type: 3}
   ExpressionPanel: {fileID: 45446021}
   AddCount: 0
+  LastNum: 0
 --- !u!1 &1070271271
 GameObject:
   m_ObjectHideFlags: 0
