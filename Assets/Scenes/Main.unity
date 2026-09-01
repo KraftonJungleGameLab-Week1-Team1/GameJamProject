@@ -495,7 +495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -18}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &159346349
@@ -1396,6 +1396,7 @@ MonoBehaviour:
   enemySpawnPoint: {fileID: 1171874248}
   LandingEffectPrefab: {fileID: 5882995707889850128, guid: 0ffa4f050a07bb5479cffb161f9af5b7, type: 3}
   enemy_Die: {fileID: 0}
+  player_attack: {fileID: 0}
 --- !u!1 &542332795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,6 +1618,7 @@ MonoBehaviour:
     ItemDataList: []
   CurrentHP: 0
   TargetInputType: 1
+  resultUI: {fileID: 0}
   inventoryManager: {fileID: 238503749}
   battleManager: {fileID: 461081429}
   expressionManager: {fileID: 1003385357}
