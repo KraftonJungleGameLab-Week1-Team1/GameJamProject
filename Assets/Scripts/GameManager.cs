@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] BattleManager battleManager;
     [SerializeField] ExpressionManager expressionManager;
+
+    [Header("UI")]
+    [SerializeField] TMP_Text descriptionText;
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -67,6 +71,8 @@ public class GameManager : MonoBehaviour
         // 조건 설정
         newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
+
+        descriptionText.text = $"{newRoundData.MinNumber}보다 높은 {newRoundData.MulNumber}의 배수 숫자를 만드시오.";
 
         // 인벤토리 비우기
         inventoryManager.DeleteItemList();
@@ -117,12 +123,12 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // 게임 중이면
-        // 게이지 줄어들기
-
         if (isRunningRound)
         {
+            // 연출 중이거나 잠시 멈춰야할 때는 멈추기
             if (!isPause)
             {
+                // 게이지 줄어들기
                 CurrentHP -= Time.deltaTime * DecreaseSpeed;
 
                 if (CurrentHP <= 0)
@@ -136,12 +142,15 @@ public class GameManager : MonoBehaviour
     // 수식 완성
     public IEnumerator IECompleteExpression()
     {
+        isPause = true;
+
         // 수식 계산 연출
         yield return expressionManager.CalculateExpression();
 
-        // 수식 성공 시 RoundClear()
-        int result = expressionManager.LastNum;
+        isPause = false;
 
+        // 수식 성공 시
+        int result = expressionManager.LastNum;
         if(result % CurrentRoundData.MulNumber == 0
             && result > CurrentRoundData.MinNumber)
         {
@@ -149,7 +158,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // 수식 실패 시 인벤토리 원상 복구
+            // 수식 실패 시
             inventoryManager.RevisibleItemList();
         }
         // 수식 비우기

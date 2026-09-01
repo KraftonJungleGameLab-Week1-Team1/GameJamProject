@@ -85,6 +85,8 @@ public class ExpressionManager : MonoBehaviour
             ItemList[ItemList.Count - 1].transform.SetParent(itemGroup.transform);
         }
 
+        itemObject.transform.localScale = Vector3.one;
+
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
         SetScrollPosition();
 

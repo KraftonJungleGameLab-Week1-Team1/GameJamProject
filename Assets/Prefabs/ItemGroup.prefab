@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 1, y: 9.5}
   m_SizeDelta: {x: -118.9781, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3094363919428890190
@@ -68,15 +68,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e25e9f7a787698e42bc20970e8f0d7c6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 4b0588f81fedb024e8d7b19713bf9ef2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -93,15 +93,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -292,6 +292,6 @@ MonoBehaviour:
   ValueItem: {fileID: 0}
   NumberText: {fileID: 3986379408135789035}
   GroupBox: {fileID: 7126844226708594951}
-  PlusColor: {r: 1, g: 0, b: 0, a: 0}
-  MinusColor: {r: 0, g: 0.14067984, b: 1, a: 0}
-  MultiplyColor: {r: 0, g: 1, b: 0.049153566, a: 0}
+  PlusColor: {r: 0.99215686, g: 0.5137255, b: 0.5137255, a: 1}
+  MinusColor: {r: 0.47843137, g: 0.5411765, b: 1, a: 1}
+  MultiplyColor: {r: 0.65882355, g: 0.99607843, b: 0.45490196, a: 1}

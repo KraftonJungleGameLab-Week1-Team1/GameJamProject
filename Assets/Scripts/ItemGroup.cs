@@ -15,8 +15,6 @@ public class ItemGroup : MonoBehaviour
     public Color MinusColor;
     public Color MultiplyColor;
 
-
-
     void Start()
     {
         
@@ -39,15 +37,15 @@ public class ItemGroup : MonoBehaviour
     {
         if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
         {
-            GroupBox.color = Color.red;
+            GroupBox.color = PlusColor;
         }
         else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Minus)
         {
-            GroupBox.color = Color.blue;
+            GroupBox.color = MinusColor;
         }
         else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Multiply)
         {
-            GroupBox.color = Color.green;
+            GroupBox.color = MultiplyColor;
         }
     }
 
