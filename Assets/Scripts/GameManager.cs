@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int RoundCount;
     public RoundData CurrentRoundData;
     public float CurrentHP;
+    public EItemType TargetInputType = EItemType.Number;
 
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
@@ -54,6 +55,8 @@ public class GameManager : MonoBehaviour
         isPause = true;
 
         // 수식 칸 비우기
+
+        TargetInputType = EItemType.Number;
 
         RoundData newRoundData = new RoundData();
 

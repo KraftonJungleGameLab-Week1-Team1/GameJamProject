@@ -16,6 +16,20 @@ public class Item : MonoBehaviour
         {
             button.onClick.AddListener(onClick);
         }
+        else
+        {
+            button.onClick.RemoveAllListeners();
+        }
+    }
+
+    public void SetVisible(bool isVisible)
+    {
+        button.gameObject.SetActive(isVisible);
+    }
+
+    public void SetHighlight(bool isHighlight)
+    {
+
     }
 
     public void SetAnimTrigger(string param)
