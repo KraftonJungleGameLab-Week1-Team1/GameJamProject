@@ -25,7 +25,7 @@ public class Fly : MonoBehaviour
     public void DoFly()
     {
         // Move the object forward along its z axis 1 unit/second.
-        transform.Translate(Vector3.forward * flySpeed * Time.deltaTime, Camera.main.transform);
+        transform.Translate(Vector3.forward * power * Time.deltaTime, Camera.main.transform);
 
         // Move the object upward in world space 1 unit/second.
         transform.Translate(Vector3.up * flySpeed * 0.6f * Time.deltaTime, Space.World);

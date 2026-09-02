@@ -31,15 +31,19 @@ public class BattleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("pressed");
             Win();
             //Instantiate(slash, Body.transform.position, Body.transform.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Debug.Log("pressed");
             SpawnEnemy();
+            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Win();
             //Instantiate(slash, Body.transform.position, Body.transform.rotation);
         }
     }
