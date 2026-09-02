@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] TMP_Text descriptionText;
+    [SerializeField] UnityEngine.UI.Button resetButton;
+    [SerializeField] UnityEngine.UI.Button emptyButton;
 
     private void Start()
     {
@@ -98,6 +100,8 @@ public class GameManager : MonoBehaviour
         {
             IsRunningRound = true;
             IsPause = true;
+            resetButton.interactable = false;
+            emptyButton.interactable = false;
 
             yield return new WaitForSeconds(1);
 
@@ -116,6 +120,8 @@ public class GameManager : MonoBehaviour
             // 설명
             descriptionText.text = $"{newRoundData.MinNumber}을 만들어라";
 
+            resetButton.interactable = true;
+            emptyButton.interactable = true;
             IsPause = false;
         }
 
@@ -148,6 +154,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator IECompleteExpression()
     {
         IsPause = true;
+        resetButton.interactable = false;
+        emptyButton.interactable = false;
 
         // 수식 계산 연출
         yield return expressionManager.CalculateExpression();

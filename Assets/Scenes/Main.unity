@@ -2727,6 +2727,8 @@ MonoBehaviour:
   scoreManager: {fileID: 1405010409}
   earnedScoreOverlay: {fileID: 1889319342}
   descriptionText: {fileID: 160694240}
+  resetButton: {fileID: 1059911795}
+  emptyButton: {fileID: 620722714}
 --- !u!1 &620722712
 GameObject:
   m_ObjectHideFlags: 0
