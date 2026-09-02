@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class ExpressionManager : MonoBehaviour
 
     public ScrollRect HorizontalScrollRect;
 
+    public Vector2 OriginPosition;
+
     //Expression에 넣은 아이템의 수
 	public int AddCount = 0;
     //맨 마지막 Itemgroup을 제외한 수들의 연산 결과
@@ -19,17 +22,31 @@ public class ExpressionManager : MonoBehaviour
 	
 	void Start()
 	{
- 
+        OriginPosition = HorizontalScrollRect.content.anchoredPosition;
     }
 
 	void Update()
 	{
-		
-	}
 
-    public void SetScrollPosition()
+    }
+
+    public void SetScrollPosition(ItemGroup itemGroup)
     {
+        int groupIndex = ItemGroupList.IndexOf(itemGroup);
+        float spacing = HorizontalScrollRect.content.GetComponent<HorizontalLayoutGroup>().spacing;
+        //HorizontalScrollRect.content.anchoredPosition -= new Vector2(itemGroup.GetComponent<RectTransform>().rect.width, 0);
+        ResetScrollPosition();
+        Vector2 newPosition = Vector2.zero;
+        for(int i = 0; i < groupIndex - 2; ++i)
+        {
+            newPosition += new Vector2(ItemGroupList[i].GetComponent<RectTransform>().rect.width / 2, 0) + new Vector2(spacing, 0);
+        }
+        HorizontalScrollRect.content.anchoredPosition -= newPosition;
+    }
 
+    public void ResetScrollPosition()
+    { 
+        HorizontalScrollRect.content.anchoredPosition = OriginPosition;
     }
 
     public void AddItem(ItemData itemData)
@@ -53,6 +70,10 @@ public class ExpressionManager : MonoBehaviour
             ItemGroupList[ItemGroupList.Count - 1].SetItemGroup(ItemList[ItemList.Count - 2], ItemList[ItemList.Count - 1]);
             ItemGroupList[ItemGroupList.Count - 1].SetBoxColor();
 
+            if (AddCount >= 11)
+            {
+                SetScrollPosition(ItemGroupList[ItemGroupList.Count - 1]);
+            }
             StartCoroutine(ItemGroupList[ItemGroupList.Count - 1].PopUpPreResult(LastNum));
 
             switch (ItemGroupList[ItemGroupList.Count - 1].OperatorItem.ItemData.OperatorType)
@@ -87,8 +108,8 @@ public class ExpressionManager : MonoBehaviour
 
         itemObject.transform.localScale = Vector3.one;
 
+
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
-        SetScrollPosition();
 
 
     }
@@ -110,6 +131,7 @@ public class ExpressionManager : MonoBehaviour
         ItemList.Clear();
         ItemGroupList.Clear();
         GameManager.Instance.TargetInputType = EItemType.Number;
+        ResetScrollPosition();
     }
 
     public bool ValidateExpression()
@@ -125,6 +147,7 @@ public class ExpressionManager : MonoBehaviour
         int result = ItemList[0].ItemData.NumberValue;
         foreach (ItemGroup itemGroup in ItemGroupList)
         {
+            SetScrollPosition(itemGroup);
             yield return StartCoroutine(itemGroup.PopUpResult(result));
 
             switch (itemGroup.OperatorItem.ItemData.OperatorType)
@@ -147,5 +170,7 @@ public class ExpressionManager : MonoBehaviour
             }
         }
         LastNum = result;
+
+        ResetScrollPosition();
     }
 }
