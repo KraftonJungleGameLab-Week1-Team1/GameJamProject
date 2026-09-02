@@ -1991,7 +1991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767672147545626262, guid: 7b50646f49e55714dbfeeb1cee43c332, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1767672147545626262, guid: 7b50646f49e55714dbfeeb1cee43c332, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5133,6 +5133,14 @@ PrefabInstance:
       propertyPath: upward
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8462019162876250333, guid: d10cc7013ec2ab348ae8d17e5f6fb32f, type: 3}
+      propertyPath: LandingEffect
+      value: 
+      objectReference: {fileID: 5882995707889850128, guid: 0ffa4f050a07bb5479cffb161f9af5b7, type: 3}
+    - target: {fileID: 8462019162876250333, guid: d10cc7013ec2ab348ae8d17e5f6fb32f, type: 3}
+      propertyPath: EnemySpawnPoint
+      value: 
+      objectReference: {fileID: 1377849236}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

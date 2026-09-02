@@ -8,7 +8,11 @@ public class Player : MonoBehaviour
 
     public GameObject slash;
 
+    public ParticleSystem LandingEffect;
+
     public Transform Body;
+    
+    // public Transform EnemySpawnPoint;
 
     public Bomb BombEffect;
 
@@ -45,6 +49,11 @@ public class Player : MonoBehaviour
     public void PlaySlash()
     {
         Instantiate(slash, Body.transform.position, Body.transform.rotation);
+    }
+
+    public void PlayLandingEffect()
+    {
+        Instantiate(LandingEffect, new Vector3(9.74f, 0f, -400.501f), LandingEffect.transform.rotation);
     }
 
     public void Defeated()

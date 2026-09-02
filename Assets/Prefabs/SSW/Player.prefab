@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slash: {fileID: 1962682601861086780, guid: d28a62bff1d461f4db6ace3af0d0065a, type: 3}
+  LandingEffect: {fileID: 5882995707889850128, guid: 0ffa4f050a07bb5479cffb161f9af5b7, type: 3}
   Body: {fileID: 5391105365571702017}
   BombEffect: {fileID: 8461718655434207053}
 --- !u!114 &8461718655434207053
