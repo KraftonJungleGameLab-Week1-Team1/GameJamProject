@@ -30,22 +30,16 @@ public class Player : MonoBehaviour
         switch (attackIndex) {
             case 1:
                 animator.SetTrigger("SwordAttack1");
-
                 break;
             case 2:
-                animator.SetTrigger("SwordAttack1");
+                animator.SetTrigger("SwordAttack2");
                 break;
             case 3:
-                animator.SetTrigger("SwordAttack1");
+                animator.SetTrigger("SwordAttack3");
                 break;
             
         }
-
-    }
-
-    public void PlaySlash()
-    {
-         Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        Instantiate(slash, Body.transform.position, Body.transform.rotation);
     }
 
     public void Defeated()
