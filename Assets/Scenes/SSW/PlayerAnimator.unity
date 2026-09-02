@@ -1086,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958447847897110782, guid: 7b50646f49e55714dbfeeb1cee43c332, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1144,6 +1144,7 @@ MonoBehaviour:
   LandingEffectPrefab: {fileID: 5882995707889850128, guid: 0ffa4f050a07bb5479cffb161f9af5b7, type: 3}
   enemy_Die: {fileID: 0}
   player_attack: {fileID: 0}
+  RandomAttackIndex: 0
 --- !u!1 &542332795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,6 +2007,7 @@ MonoBehaviour:
   ItemGroupPrefab: {fileID: 5462592726775657710, guid: b51c80a2acb25644fbb1a3b7c8c589f2, type: 3}
   ExpressionPanel: {fileID: 45446021}
   HorizontalScrollRect: {fileID: 315490958}
+  OriginPosition: {x: 0, y: 0}
   AddCount: 0
   LastNum: 0
 --- !u!1 &1059911793
