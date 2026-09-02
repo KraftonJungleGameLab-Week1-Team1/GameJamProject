@@ -80,6 +80,9 @@ public class ExpressionManager : MonoBehaviour
             }
             StartCoroutine(ItemGroupList[ItemGroupList.Count - 1].PopUpPreResult(LastNum));
 
+            // 중간 결과 값 캐시
+
+
             switch (ItemGroupList[ItemGroupList.Count - 1].OperatorItem.ItemData.OperatorType)
             {
                 case EItemOperatorType.Plus:
@@ -111,6 +114,8 @@ public class ExpressionManager : MonoBehaviour
         }
 
         itemObject.transform.localScale = Vector3.one;
+
+        GameManager.Instance.LastPreResult = LastNum;
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
     }
 
