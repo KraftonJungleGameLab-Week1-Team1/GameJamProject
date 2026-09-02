@@ -73,9 +73,6 @@ public class GameManager : MonoBehaviour
     // 하나의 라운드 시작
     public void StartRound()
     {
-        IsRunningRound = true;
-        IsPause = true;
-
         LastPreResult = 0;
         TargetInputType = EItemType.Number;
 
@@ -97,8 +94,11 @@ public class GameManager : MonoBehaviour
 
         descriptionText.text = string.Empty;
 
-        IEnumerator Show()
+        IEnumerator ShowProgress()
         {
+            IsRunningRound = true;
+            IsPause = true;
+
             yield return new WaitForSeconds(1);
 
             // 전투 등장 연출
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
             IsPause = false;
         }
 
-        StartCoroutine(Show());
+        StartCoroutine(ShowProgress());
     }
 
     private void Update()
@@ -152,8 +152,6 @@ public class GameManager : MonoBehaviour
         // 수식 계산 연출
         yield return expressionManager.CalculateExpression();
 
-        IsPause = false;
-
         // 수식 성공 시
         int result = expressionManager.LastNum;
         //if (result % CurrentRoundData.MulNumber == 0
@@ -173,7 +171,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // 수식 실패 시
-            inventoryManager.RevisibleItemList();
+            inventoryManager.SetVisibleItemList(true);
         }
         // 수식 비우기
         expressionManager.ClearExpression();
@@ -185,19 +183,28 @@ public class GameManager : MonoBehaviour
     // 수식 완성
     public void CompleteExpression()
     {
-        if (expressionManager.ValidateExpression())
-            StartCoroutine(IECompleteExpression());
+        inventoryManager.SetVisibleItemList(false);
+
+        StartCoroutine(IECompleteExpression());
     }
 
     // 하나의 라운드 성공
     public void RoundClear()
     {
-        // 전투 성공 연출
-        battleManager.Win();
-        PlayerHeal();
-        // 다음 라운드
-        RoundCount++;
-        StartRound();
+        IEnumerator ClearProgress()
+        {
+            // 전투 성공 연출
+            battleManager.Win();
+            PlayerHeal();
+
+            yield return new WaitForSeconds(2);
+
+            // 다음 라운드
+            RoundCount++;
+            StartRound();
+        }
+
+        StartCoroutine(ClearProgress());
     }
 
     // 하나의 라운드 실패

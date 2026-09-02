@@ -54,11 +54,11 @@ public class InventoryManager : MonoBehaviour
         //StartCoroutine(ShowCoroutine());
     }
 
-    public void RevisibleItemList()
+    public void SetVisibleItemList(bool isVisible)
     {
         foreach (Item item in itemList)
         {
-            item.SetVisible(true);
+            item.SetVisible(isVisible);
         }
     }
 
@@ -126,7 +126,7 @@ public class InventoryManager : MonoBehaviour
     public void OnClickEmptyButton()
     {
         expressionManager.ClearExpression();
-        RevisibleItemList();
+        SetVisibleItemList(true);
         UpdateHighlight();
         GameManager.Instance.LastPreResult = 0;
     }
