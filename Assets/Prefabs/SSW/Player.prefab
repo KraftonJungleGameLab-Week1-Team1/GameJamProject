@@ -361,8 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0751d240945d8ef499a1004a0bc3b76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slash: {fileID: 0}
-  Body: {fileID: 0}
+  slash: {fileID: 1962682601861086780, guid: d28a62bff1d461f4db6ace3af0d0065a, type: 3}
+  Body: {fileID: 5391105365571702017}
 --- !u!1 &6443107883597719422
 GameObject:
   m_ObjectHideFlags: 0
