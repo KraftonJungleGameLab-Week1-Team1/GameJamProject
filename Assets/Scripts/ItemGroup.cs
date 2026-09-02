@@ -86,7 +86,7 @@ public class ItemGroup : MonoBehaviour
 
         while (flag > 0f)
         {
-            flag -= Time.deltaTime * 7f;
+            flag -= Time.deltaTime * 5f;
             yield return null;
             NumberText.fontSize = OriginFontSize * flag;
             NumberText.alpha = flag * 0.6f;

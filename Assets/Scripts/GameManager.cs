@@ -188,6 +188,9 @@ public class GameManager : MonoBehaviour
         if (result % CurrentRoundData.MulNumber == 0
             && result >= CurrentRoundData.MinNumber)
         {
+            // 콤보 계산
+            result *= expressionManager.LastCombo;
+
             // 점수 누적
             TotalScore += result;
             earnedScoreOverlay.ShowEarnedScore(TotalScore);
