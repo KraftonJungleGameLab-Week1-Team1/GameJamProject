@@ -44,6 +44,8 @@ public class EarnedScoreOverlay : MonoBehaviour
             yield return null;
         }
         earnedScoreText.gameObject.SetActive(false);
+        earnedScoreText.gameObject.transform.position = originPosition;
+        earnedScoreText.fontSize = originFontSize;
     }
 
     public IEnumerator ShowEarnedScore(int score)
