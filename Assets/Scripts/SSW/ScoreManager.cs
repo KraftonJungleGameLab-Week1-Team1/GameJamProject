@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] GameObject panel;
+
     public TMP_Text scoreText;
     public TMP_Text survivalTimeText;
 
@@ -11,6 +13,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ShowResult(int totalscore, float survivalTime)
     {
+        panel.SetActive(true);
         gameObject.SetActive(true);
 
         scoreText.text = totalscore.ToString();
@@ -28,7 +31,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 
     public void OnClickRestart()

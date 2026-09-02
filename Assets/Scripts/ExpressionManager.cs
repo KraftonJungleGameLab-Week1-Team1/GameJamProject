@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,13 +15,16 @@ public class ExpressionManager : MonoBehaviour
     public ScrollRect HorizontalScrollRect;
 
     public Vector2 OriginPosition;
+    public TMP_Text ComboText;
 
     //Expression에 넣은 아이템의 수
 	public int AddCount = 0;
     //맨 마지막 Itemgroup을 제외한 수들의 연산 결과
 	public int LastNum = 0;
-	
-	void Start()
+    public int CurrentCombo = 0;
+    public float OriginFontSize;
+
+    void Start()
 	{
         OriginPosition = HorizontalScrollRect.content.anchoredPosition;
     }
@@ -34,7 +38,6 @@ public class ExpressionManager : MonoBehaviour
     {
         int groupIndex = ItemGroupList.IndexOf(itemGroup);
         float spacing = HorizontalScrollRect.content.GetComponent<HorizontalLayoutGroup>().spacing;
-        //HorizontalScrollRect.content.anchoredPosition -= new Vector2(itemGroup.GetComponent<RectTransform>().rect.width, 0);
         ResetScrollPosition();
         Vector2 newPosition = Vector2.zero;
         for(int i = 0; i < groupIndex - 2; ++i)
@@ -107,11 +110,7 @@ public class ExpressionManager : MonoBehaviour
         }
 
         itemObject.transform.localScale = Vector3.one;
-
-
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ExpressionPanel.transform);
-
-
     }
 
     public void ClearExpression()
@@ -142,12 +141,41 @@ public class ExpressionManager : MonoBehaviour
         { return false; }
     }
 
+    public IEnumerator PopUpComboText()
+    {
+        ComboText.gameObject.SetActive(true);
+        ++CurrentCombo;
+        ComboText.text = "x" + CurrentCombo;
+
+        OriginFontSize = ComboText.fontSize;
+        float flag = 0f;
+        ComboText.fontSize = flag;
+        while (flag < 1f)
+        {
+            flag += Time.deltaTime * 50f;
+            yield return new WaitForSeconds(0.01f);
+            ComboText.fontSize = OriginFontSize * flag;
+        }
+        yield return new WaitForSeconds(0.1f);
+
+        while (flag > 0f)
+        {
+            flag -= Time.deltaTime * 20f;
+            yield return new WaitForSeconds(0.01f);
+            ComboText.fontSize = OriginFontSize * flag;
+        }
+
+        ComboText.gameObject.SetActive(false);
+        ComboText.fontSize = OriginFontSize;
+    }
+
     public IEnumerator CalculateExpression()
     {
         int result = ItemList[0].ItemData.NumberValue;
         foreach (ItemGroup itemGroup in ItemGroupList)
         {
             SetScrollPosition(itemGroup);
+            StartCoroutine(PopUpComboText());
             yield return StartCoroutine(itemGroup.PopUpResult(result));
 
             switch (itemGroup.OperatorItem.ItemData.OperatorType)
@@ -170,7 +198,7 @@ public class ExpressionManager : MonoBehaviour
             }
         }
         LastNum = result;
-
+        CurrentCombo = 0;
         ResetScrollPosition();
     }
 }
