@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,19 +24,19 @@ public class GameManager : MonoBehaviour
     public EItemType TargetInputType = EItemType.Number;
     public int TotalScore;
     public float SurvivalTime;
+    public bool IsRunningRound = false;
+    public bool IsPause = false;
+    public int LastResult; // 가장 최근에 수식 성공했을 때의 결과 값
 
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] BattleManager battleManager;
     [SerializeField] ExpressionManager expressionManager;
     [SerializeField] ScoreManager scoreManager;
+    [SerializeField] EarnedScoreOverlay earnedScoreOverlay;
 
     [Header("UI")]
     [SerializeField] TMP_Text descriptionText;
-    [SerializeField] TMP_Text scoreText;
-
-    bool isRunningRound = false;
-    bool isPause = false;
 
     private void Start()
     {
@@ -58,7 +57,8 @@ public class GameManager : MonoBehaviour
         RoundCount = 1;
         SurvivalTime = 0;
         TotalScore = 0;
-        scoreText.text = $"Score : {TotalScore}";
+        LastResult = 0;
+        earnedScoreOverlay.SetTotalScoreText(TotalScore);
         CurrentHP = MaxHP;
 
         // 플레이어 생성
@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
     // 하나의 라운드 시작
     public void StartRound()
     {
-        isRunningRound = true;
-        isPause = true;
+        IsRunningRound = true;
+        IsPause = true;
 
         TargetInputType = EItemType.Number;
 
@@ -146,19 +146,19 @@ public class GameManager : MonoBehaviour
         inventoryManager.SetupItemList(CurrentRoundData.ItemDataList);
         inventoryManager.UpdateHighlight();
 
-        isPause = false;
+        IsPause = false;
     }
 
     private void Update()
     {
         // 게임 중이면
-        if (isRunningRound)
+        if (IsRunningRound)
         {
             // 생존 시간 증가
             SurvivalTime += Time.deltaTime;
 
             // 연출 중이거나 잠시 멈춰야할 때는 멈추기
-            if (!isPause)
+            if (!IsPause)
             {
                 // 게이지 줄어들기
                 CurrentHP -= Time.deltaTime * DecreaseSpeed;
@@ -174,12 +174,12 @@ public class GameManager : MonoBehaviour
     // 수식 완성
     public IEnumerator IECompleteExpression()
     {
-        isPause = true;
+        IsPause = true;
 
         // 수식 계산 연출
         yield return expressionManager.CalculateExpression();
 
-        isPause = false;
+        IsPause = false;
 
         // 수식 성공 시
         int result = expressionManager.LastNum;
@@ -188,8 +188,10 @@ public class GameManager : MonoBehaviour
         {
             // 점수 누적
             TotalScore += result;
-            scoreText.text = $"Score : {TotalScore}";
+            earnedScoreOverlay.ShowEarnedScore(TotalScore);
             RoundClear();
+
+            LastResult = result;
         }
         else
         {
@@ -227,7 +229,7 @@ public class GameManager : MonoBehaviour
         // 전투 실패 연출
         battleManager.Lose();
 
-        isRunningRound = false;
+        IsRunningRound = false;
 
         EndGame();
     }
