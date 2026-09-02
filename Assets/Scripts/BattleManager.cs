@@ -66,7 +66,7 @@ public class BattleManager : MonoBehaviour
     {
 
         enemy_Die.Defeated();
-        RandomAttackIndex = Random.Range(1, 4);
+        RandomAttackIndex = Random.Range(1, 5);
         player_attack.DoAttack(RandomAttackIndex);
         //Destroy(enemy);
     }

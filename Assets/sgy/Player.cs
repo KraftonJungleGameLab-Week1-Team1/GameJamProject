@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
             case 3:
                 animator.SetTrigger("SwordAttack3");
                 break;
+            case 4:
+                animator.SetTrigger("SwordAttack4");
+                break;
             
         }
         

@@ -71,6 +71,12 @@ public class Enemy_Die : MonoBehaviour
                 //BonkEffect.BonkFlagOn();
                 FlyEffct.FlyFlagOn();
                 break;
+            case 4:
+                yield return new WaitForSeconds(1.1f); // 초 동안 대기
+                //BombEffect.explode();
+                //FlyEffct.FlyFlagOn();
+                BonkEffect.BonkFlagOn();
+                break;
         }
     }
 }
