@@ -32,10 +32,10 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("SwordAttack1");
                 break;
             case 2:
-                animator.SetTrigger("SwordAttack1");
+                animator.SetTrigger("SwordAttack2");
                 break;
             case 3:
-                animator.SetTrigger("SwordAttack1");
+                animator.SetTrigger("SwordAttack3");
                 break;
             
         }
