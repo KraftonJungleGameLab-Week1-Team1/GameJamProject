@@ -162,7 +162,7 @@ public class ExpressionManager : MonoBehaviour
             yield return null;
             ComboText.fontSize = OriginFontSize * flag;
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         while (flag > 0f)
         {
             flag -= Time.deltaTime * 5f;
@@ -177,12 +177,15 @@ public class ExpressionManager : MonoBehaviour
     public IEnumerator CalculateExpression()
     {
         int result = ItemList[0].ItemData.NumberValue;
+        int count = 0;
+
+        StartCoroutine(AudioManager.Instance.PlaySequence(ItemGroupList.Count));
         foreach (ItemGroup itemGroup in ItemGroupList)
         {
             SetScrollPosition(itemGroup);
             StartCoroutine(PopUpComboText());
             yield return StartCoroutine(itemGroup.PopUpResult(result));
-
+            count++;
             switch (itemGroup.OperatorItem.ItemData.OperatorType)
             {
                 case EItemOperatorType.Plus:
