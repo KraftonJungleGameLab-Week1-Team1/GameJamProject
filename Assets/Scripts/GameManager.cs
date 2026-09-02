@@ -23,15 +23,19 @@ public class GameManager : MonoBehaviour
     public RoundData CurrentRoundData;
     public float CurrentHP;
     public EItemType TargetInputType = EItemType.Number;
-    public ResultUI resultUI;
+    public int TotalScore;
+    public float SurvivalTime;
 
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] BattleManager battleManager;
     [SerializeField] ExpressionManager expressionManager;
+    [SerializeField] ScoreManager scoreManager;
 
     [Header("UI")]
     [SerializeField] TMP_Text descriptionText;
+
+
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -53,6 +57,8 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         RoundCount = 1;
+        SurvivalTime = 0;
+        TotalScore = 0;
         CurrentHP = MaxHP;
 
         // 플레이어 생성
@@ -141,11 +147,16 @@ public class GameManager : MonoBehaviour
         // 게임 중이면
         if (isRunningRound)
         {
+            // 생존 시간 증가
+            SurvivalTime += Time.deltaTime;
+
             // 연출 중이거나 잠시 멈춰야할 때는 멈추기
             if (!isPause)
             {
                 // 게이지 줄어들기
                 CurrentHP -= Time.deltaTime * DecreaseSpeed;
+
+
 
                 if (CurrentHP <= 0)
                 {
@@ -167,9 +178,11 @@ public class GameManager : MonoBehaviour
 
         // 수식 성공 시
         int result = expressionManager.LastNum;
-        if(result % CurrentRoundData.MulNumber == 0
+        if (result % CurrentRoundData.MulNumber == 0
             && result > CurrentRoundData.MinNumber)
         {
+            // 점수 누적
+            TotalScore += result;
             RoundClear();
         }
         else
@@ -188,7 +201,7 @@ public class GameManager : MonoBehaviour
     public void CompleteExpression()
     {
         if (expressionManager.ValidateExpression())
-        StartCoroutine(IECompleteExpression());
+            StartCoroutine(IECompleteExpression());
     }
 
     // 하나의 라운드 성공
@@ -217,7 +230,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         // 결과 화면 UI 보여주기
-        resultUI.ResultPanel.SetActive(true);
+        scoreManager.ShowResult(TotalScore, SurvivalTime);
     }
 }
 
