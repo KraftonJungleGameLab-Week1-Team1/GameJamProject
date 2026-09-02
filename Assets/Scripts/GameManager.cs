@@ -80,11 +80,11 @@ public class GameManager : MonoBehaviour
         // 조건 설정
         if (RoundCount == 1)
         {
-            newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
+            newRoundData.MinNumber = UnityEngine.Random.Range(15, 21) * 4; // 15 ~ 20
         }
         else
         {
-            newRoundData.MinNumber = Mathf.FloorToInt(UnityEngine.Random.Range(15, 21) + Mathf.Pow((float) (4 + (0.7f * RoundCount - 1)) , 2));
+            newRoundData.MinNumber = Mathf.FloorToInt(UnityEngine.Random.Range(15, 21) + Mathf.Pow((float) (4 + (1.3f * RoundCount - 1)) , 2));
         }
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
 
