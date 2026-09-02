@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
     {
         // 전투 성공 연출
         battleManager.Win();
-
+        PlayerHeal();
         // 다음 라운드
         RoundCount++;
         StartRound();
@@ -231,6 +231,21 @@ public class GameManager : MonoBehaviour
     {
         // 결과 화면 UI 보여주기
         scoreManager.ShowResult(TotalScore, SurvivalTime);
+    }
+
+    public void PlayerHeal()
+    {
+        int healGuage = 0;
+        healGuage = 20 + RoundCount * 3;
+        if (healGuage > 50)
+        {
+            healGuage = 50;
+        }
+        CurrentHP += healGuage;
+        if (CurrentHP > MaxHP)
+        {
+            CurrentHP = MaxHP;
+        }
     }
 }
 
