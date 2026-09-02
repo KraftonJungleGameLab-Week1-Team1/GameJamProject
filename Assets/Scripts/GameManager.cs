@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         IsPause = true;
 
+
         // 수식 계산 연출
         yield return expressionManager.CalculateExpression();
 
@@ -207,10 +208,10 @@ public class GameManager : MonoBehaviour
     public void PlayerHeal()
     {
         int healGuage = 0;
-        healGuage = 20 + RoundCount * 3;
-        if (healGuage > 50)
+        healGuage = 30 + RoundCount * 3;
+        if (healGuage > 60)
         {
-            healGuage = 50;
+            healGuage = 60;
         }
         CurrentHP += healGuage;
         if (CurrentHP > MaxHP)
