@@ -3,7 +3,7 @@ using System.Collections;
 public class Enemy_Die : MonoBehaviour
 {
 
-    public BattleManager BattleManager;
+    public BattleManager battleManager;
 
     public int RandDieEffect;
 
@@ -11,10 +11,12 @@ public class Enemy_Die : MonoBehaviour
     public Bomb BombEffect;
     public Bonk BonkEffect;
 
+    //public int attackNumber;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
 
     // Update is called once per frame
@@ -48,17 +50,22 @@ public class Enemy_Die : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f); // 초 동안 대기
         Debug.Log("pressed");
-        RandDieEffect = Random.Range(1, 4);
-        switch (RandDieEffect)
+        //RandDieEffect = Random.Range(1, 4);
+        //attackNumber = battleManager.RandomAttackIndex;
+        switch (battleManager.RandomAttackIndex)
         {
             case 1:
-                FlyEffct.FlyFlagOn();
-                break;
-            case 2:
+                //FlyEffct.FlyFlagOn();
                 BombEffect.explode();
                 break;
-            case 3:
+            case 2:
+                //BombEffect.explode();
+                //FlyEffct.FlyFlagOn();
                 BonkEffect.BonkFlagOn();
+                break;
+            case 3:
+                //BonkEffect.BonkFlagOn();
+                FlyEffct.FlyFlagOn();
                 break;
         }
     }
