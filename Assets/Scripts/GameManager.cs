@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float SurvivalTime;
     public bool IsRunningRound = false;
     public bool IsPause = false;
+    public int LastPreResult;
     public int LastResult; // 가장 최근에 수식 성공했을 때의 결과 값
 
     [Header("References")]
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
         RoundCount = 1;
         SurvivalTime = 0;
         TotalScore = 0;
+        LastPreResult = 0;
         LastResult = 0;
         earnedScoreOverlay.SetTotalScoreText(TotalScore);
         CurrentHP = MaxHP;
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
         IsRunningRound = true;
         IsPause = true;
 
+        LastPreResult = 0;
         TargetInputType = EItemType.Number;
 
         RoundData newRoundData = new RoundData();
