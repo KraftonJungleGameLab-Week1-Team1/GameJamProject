@@ -50,8 +50,6 @@ public class InventoryManager : MonoBehaviour
             itemList.Add(newItem);
         }
 
-        UpdateHighlight();
-
         // 보여주기
         //StartCoroutine(ShowCoroutine());
     }
@@ -115,6 +113,22 @@ public class InventoryManager : MonoBehaviour
         }
 
         itemList.Clear();
+    }
+
+    public void OnClickResetButton()
+    {
+        expressionManager.ClearExpression();
+        ResetInventory();
+        UpdateHighlight();
+        GameManager.Instance.LastPreResult = 0;
+    }
+
+    public void OnClickEmptyButton()
+    {
+        expressionManager.ClearExpression();
+        RevisibleItemList();
+        UpdateHighlight();
+        GameManager.Instance.LastPreResult = 0;
     }
 
     public List<ItemData> ResetInventory()
