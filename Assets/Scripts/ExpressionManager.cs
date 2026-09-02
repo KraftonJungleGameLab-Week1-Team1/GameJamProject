@@ -198,6 +198,7 @@ public class ExpressionManager : MonoBehaviour
             }
         }
         LastNum = result;
+        int finalScore = result * CurrentCombo;
         CurrentCombo = 0;
         ResetScrollPosition();
     }
