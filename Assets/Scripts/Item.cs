@@ -10,8 +10,7 @@ public class Item : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Animator animator;
 
-    [SerializeField] Color baseColor;
-    [SerializeField] Color highlightColor;
+    [SerializeField] GameObject visibleObject;
 
     public void SetClickEvent(UnityAction onClick)
     {
@@ -27,7 +26,7 @@ public class Item : MonoBehaviour
 
     public void SetVisible(bool isVisible)
     {
-        button.gameObject.SetActive(isVisible);
+        visibleObject.SetActive(isVisible);
     }
 
     public void SetHighlight(bool isHighlight)
@@ -35,12 +34,10 @@ public class Item : MonoBehaviour
         if (isHighlight)
         {
             button.interactable = false;
-            //button.GetComponent<Image>().color = highlightColor;
         }
         else
         {
             button.interactable = true;
-            //button.GetComponent<Image>().color = baseColor;
         }
     }
 
