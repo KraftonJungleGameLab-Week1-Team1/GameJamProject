@@ -6249,6 +6249,7 @@ MonoBehaviour:
   totalScoreText: {fileID: 1473334089}
   earnedScoreText: {fileID: 1729566121}
   DestTransform: {fileID: 1293151520}
+  totalScore: 0
 --- !u!1 &1935254043
 GameObject:
   m_ObjectHideFlags: 0
