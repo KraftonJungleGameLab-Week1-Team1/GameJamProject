@@ -21,6 +21,7 @@ public class ExpressionManager : MonoBehaviour
 	public int AddCount = 0;
     //맨 마지막 Itemgroup을 제외한 수들의 연산 결과
 	public int LastNum = 0;
+	public int LastCombo = 0;
     public int CurrentCombo = 0;
     public float OriginFontSize;
 
@@ -152,16 +153,15 @@ public class ExpressionManager : MonoBehaviour
         ComboText.fontSize = flag;
         while (flag < 1f)
         {
-            flag += Time.deltaTime * 50f;
-            yield return new WaitForSeconds(0.01f);
+            flag += Time.deltaTime * 7f;
+            yield return null;
             ComboText.fontSize = OriginFontSize * flag;
         }
         yield return new WaitForSeconds(0.1f);
-
         while (flag > 0f)
         {
-            flag -= Time.deltaTime * 20f;
-            yield return new WaitForSeconds(0.01f);
+            flag -= Time.deltaTime * 5f;
+            yield return null;
             ComboText.fontSize = OriginFontSize * flag;
         }
 
@@ -198,7 +198,8 @@ public class ExpressionManager : MonoBehaviour
             }
         }
         LastNum = result;
-        int finalScore = result * CurrentCombo;
+        LastCombo = CurrentCombo;
+
         CurrentCombo = 0;
         ResetScrollPosition();
     }

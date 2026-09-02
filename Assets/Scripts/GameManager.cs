@@ -104,11 +104,11 @@ public class GameManager : MonoBehaviour
             newItemData.Type = EItemType.Number;
             int newNumber = UnityEngine.Random.Range(1, 10); // 1 ~ 9
 
-            // MulNumber 로 나눠지는 숫자가 등장하는 것을 방지
-            while (newNumber % newRoundData.MulNumber == 0)
-            {
-                newNumber = UnityEngine.Random.Range(1, 10);
-            }
+            //// MulNumber 로 나눠지는 숫자가 등장하는 것을 방지
+            //while (newNumber % newRoundData.MulNumber == 0)
+            //{
+            //    newNumber = UnityEngine.Random.Range(1, 10);
+            //}
             newItemData.NumberValue = newNumber;
 
             newRoundData.ItemDataList.Add(newItemData);
@@ -185,9 +185,13 @@ public class GameManager : MonoBehaviour
 
         // 수식 성공 시
         int result = expressionManager.LastNum;
-        if (result % CurrentRoundData.MulNumber == 0
-            && result >= CurrentRoundData.MinNumber)
+        //if (result % CurrentRoundData.MulNumber == 0
+        //    && result >= CurrentRoundData.MinNumber)
+        if (result == CurrentRoundData.MinNumber)
         {
+            // 콤보 계산
+            result *= expressionManager.LastCombo;
+
             // 점수 누적
             TotalScore += result;
             earnedScoreOverlay.ShowEarnedScore(TotalScore);
