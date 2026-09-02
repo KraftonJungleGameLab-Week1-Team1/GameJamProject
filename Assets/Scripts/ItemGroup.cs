@@ -78,16 +78,16 @@ public class ItemGroup : MonoBehaviour
         NumberText.fontSize = flag;
         while (flag < 1f)
         {
-            flag += Time.deltaTime * 50f;
-            yield return new WaitForSeconds(0.01f);
+            flag += Time.deltaTime * 7f;
+            yield return null;
             NumberText.fontSize = OriginFontSize * flag;
         }
         yield return new WaitForSeconds(0.1f);
 
         while (flag > 0f)
         {
-            flag -= Time.deltaTime * 20f;
-            yield return new WaitForSeconds(0.01f);
+            flag -= Time.deltaTime * 7f;
+            yield return null;
             NumberText.fontSize = OriginFontSize * flag;
             NumberText.alpha = flag * 0.6f;
         }
@@ -119,16 +119,16 @@ public class ItemGroup : MonoBehaviour
         NumberText.fontSize = flag;
         while (flag < 1f)
         {
-            flag += Time.deltaTime * 40f;
-            yield return new WaitForSeconds(0.01f);
+            flag += Time.deltaTime * 6f;
+            yield return null;
             NumberText.fontSize = OriginFontSize * flag;
         }
         yield return new WaitForSeconds(0.2f);
 
         while (flag > 0f)
         {
-            flag -= Time.deltaTime * 10f;
-            yield return new WaitForSeconds(0.01f);
+            flag -= Time.deltaTime * 6f;
+            yield return null;
             NumberText.fontSize = OriginFontSize * flag;
             NumberText.alpha = flag * 0.6f;
         }
