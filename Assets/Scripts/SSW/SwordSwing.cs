@@ -3,10 +3,9 @@ using UnityEngine;
 public class SwordSwing : MonoBehaviour
 {
     public float swingTime = 2.0f;
-    float t;
     void Start()
     {
-        StartCoroutine(SwingAttack(new Vector3(-44.595f, -48.9f, -109.27f), new Vector3(0.783f, 1.628f, 0.498f)));
+        StartCoroutine(SwingAttack(new Vector3(0f, 0f, -120f), new Vector3(0.783f, 1.628f, 0.498f)));
     }
 
     // void Update()
