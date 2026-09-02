@@ -10,6 +10,8 @@ public class EarnedScoreOverlay : MonoBehaviour
     public TMP_Text earnedScoreText;
 
     public Transform DestTransform;
+    public int totalScore = 0;
+
 
     public void SetTotalScoreText(int score)
     {
@@ -18,12 +20,12 @@ public class EarnedScoreOverlay : MonoBehaviour
 
     public IEnumerator SetTotalScore(int score)
     {
-        for(int i = 0; i < score; ++i)
+        for (int i = totalScore; i < score; ++i)
         {
             totalScoreText.text = $"Score : {i}";
             yield return null;
         }
-
+        totalScore += score;
         totalScoreText.text = $"Score : {score}";
     }
     public IEnumerator SetEarnedScoreText(int score)
@@ -53,7 +55,7 @@ public class EarnedScoreOverlay : MonoBehaviour
 
         StartCoroutine(AudioManager.Instance.PlaySequence());
         yield return StartCoroutine(SetEarnedScoreText(score));
-        yield return StartCoroutine(SetTotalScore(score));
+        yield return StartCoroutine(SetTotalScore(totalScore + score));
     }
 
     //IEnumerator ShowCoroutine()
