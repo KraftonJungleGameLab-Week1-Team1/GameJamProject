@@ -66,7 +66,8 @@ public class BattleManager : MonoBehaviour
 
     public void Lose()
     {
-        Destroy(player);
+        player_attack.Defeated();
+        //Destroy(player);
     }
 }
 

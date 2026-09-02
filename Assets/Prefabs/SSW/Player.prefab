@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 1767672147545626262}
   - component: {fileID: 8919124382036243924}
   - component: {fileID: 8462019162876250333}
+  - component: {fileID: 8461718655434207053}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -363,6 +364,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slash: {fileID: 1962682601861086780, guid: d28a62bff1d461f4db6ace3af0d0065a, type: 3}
   Body: {fileID: 5391105365571702017}
+  BombEffect: {fileID: 8461718655434207053}
+--- !u!114 &8461718655434207053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958447847897110782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac2c11d9ff7a754db8d3acc43311928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 20
+  power: 700
+  upward: 30
 --- !u!1 &6443107883597719422
 GameObject:
   m_ObjectHideFlags: 0

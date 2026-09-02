@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 
     public Transform Body;
 
+    public Bomb BombEffect;
+
     private void Start()
     {
 
@@ -25,5 +27,10 @@ public class Player : MonoBehaviour
     {
 
         Instantiate(slash, Body.transform.position, Body.transform.rotation);
+    }
+
+    public void Defeated()
+    {
+        BombEffect.explode();
     }
 }
