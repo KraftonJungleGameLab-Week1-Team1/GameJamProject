@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 9132876105257227125}
   - component: {fileID: 8367530547301766334}
   - component: {fileID: 1325901217856269347}
+  - component: {fileID: 396414006281047260}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -788,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b6365e332834748815620964a64fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 0}
+  battleManager: {fileID: 0}
   RandDieEffect: 3
   FlyEffct: {fileID: 8367530547301766334}
   BombEffect: {fileID: 1325901217856269347}
@@ -821,7 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 20
   radius: 5
-  power: 50
+  power: 400
   FlyFlag: 0
 --- !u!114 &1325901217856269347
 MonoBehaviour:
@@ -838,6 +839,28 @@ MonoBehaviour:
   radius: 20
   power: 700
   upward: 30
+--- !u!95 &396414006281047260
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958447847897110782}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: edde0cbd56e3c5c44afba4a5eda73dae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5352534350776222781
 GameObject:
   m_ObjectHideFlags: 0

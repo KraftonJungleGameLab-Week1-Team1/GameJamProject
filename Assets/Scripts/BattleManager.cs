@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.VFX;
 
 public class BattleManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class BattleManager : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform enemySpawnPoint;
 
-    public ParticleSystem LandingEffectPrefab;
+    public VisualEffect smokeEffectPrefab;
 
     public Enemy_Die enemy_Die;
 
@@ -50,22 +51,22 @@ public class BattleManager : MonoBehaviour
     {
         player = Instantiate(playerPrefab, playerSpawnPoint.position, playerPrefab.transform.rotation);
         player_attack = player.GetComponent<Player>();
-        Instantiate(LandingEffectPrefab, playerSpawnPoint.position, LandingEffectPrefab.transform.rotation);
+        Instantiate(smokeEffectPrefab, playerSpawnPoint.position, smokeEffectPrefab.transform.rotation);
     }
 
     public void SpawnEnemy()
     {
-        //enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
-        //enemy_Die = enemy.GetComponent<Enemy_Die>();
-        //Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
-        StartCoroutine(EnemyDelayTime());
+        enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
+        enemy_Die = enemy.GetComponent<Enemy_Die>();
+        Instantiate(smokeEffectPrefab, enemySpawnPoint.position, smokeEffectPrefab.transform.rotation);
+        //StartCoroutine(EnemyDelayTime());
     }
 
     public void Win()
     {
 
         enemy_Die.Defeated();
-        RandomAttackIndex = Random.Range(1, 4);
+        RandomAttackIndex = Random.Range(1, 5);
         player_attack.DoAttack(RandomAttackIndex);
         //Destroy(enemy);
     }
@@ -80,7 +81,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1.6f); // 2초 동안 대기
         enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
         enemy_Die = enemy.GetComponent<Enemy_Die>();
-        Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
+        Instantiate(smokeEffectPrefab, enemySpawnPoint.position, smokeEffectPrefab.transform.rotation);
         Debug.Log("지연실행됨");
     }
 

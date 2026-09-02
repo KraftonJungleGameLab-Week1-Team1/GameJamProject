@@ -71,7 +71,7 @@ public class Bomb : MonoBehaviour
             if (child == transform) continue;
             //child.transform.SetParent(null);
             Rigidbody rb = child.GetComponent<Rigidbody>();
-            rb.AddExplosionForce(power, explosionPos, radius, 3.0f);
+            rb.AddExplosionForce(power, explosionPos, radius, 100.0f);
             Debug.Log("모든자식리지드바디넣고폭발!");
             Destroy(child.gameObject, 4f);
         }

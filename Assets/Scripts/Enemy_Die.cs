@@ -5,6 +5,8 @@ public class Enemy_Die : MonoBehaviour
 
     public BattleManager battleManager;
 
+    // public Animator animator;
+
     public int RandDieEffect;
 
     public Fly FlyEffct;
@@ -17,6 +19,7 @@ public class Enemy_Die : MonoBehaviour
     void Start()
     {
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        // animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,7 @@ public class Enemy_Die : MonoBehaviour
     }
     public void Defeated()
     {
+        // animator.SetTrigger("Stop");
         StartCoroutine(EnemyDieDelayTime());
 
         /* Debug.Log("pressed");
@@ -66,6 +70,12 @@ public class Enemy_Die : MonoBehaviour
             case 3:
                 //BonkEffect.BonkFlagOn();
                 FlyEffct.FlyFlagOn();
+                break;
+            case 4:
+                yield return new WaitForSeconds(1.1f); // 초 동안 대기
+                //BombEffect.explode();
+                //FlyEffct.FlyFlagOn();
+                BonkEffect.BonkFlagOn();
                 break;
         }
     }
