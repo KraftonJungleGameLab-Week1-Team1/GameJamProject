@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
                 break;
             
         }
+        
+    }
+
+    public void PlaySlash()
+    {
         Instantiate(slash, Body.transform.position, Body.transform.rotation);
     }
 
