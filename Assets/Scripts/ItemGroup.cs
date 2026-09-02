@@ -1,9 +1,7 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class ItemGroup : MonoBehaviour
 {
