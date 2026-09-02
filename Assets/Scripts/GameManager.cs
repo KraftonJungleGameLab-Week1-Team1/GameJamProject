@@ -23,19 +23,15 @@ public class GameManager : MonoBehaviour
     public RoundData CurrentRoundData;
     public float CurrentHP;
     public EItemType TargetInputType = EItemType.Number;
-    public int TotalScore;
-    public float SurvivalTime;
+    public ResultUI resultUI;
 
     [Header("References")]
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] BattleManager battleManager;
     [SerializeField] ExpressionManager expressionManager;
-    [SerializeField] ScoreManager scoreManager;
 
     [Header("UI")]
     [SerializeField] TMP_Text descriptionText;
-
-
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -57,8 +53,6 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         RoundCount = 1;
-        SurvivalTime = 0;
-        TotalScore = 0;
         CurrentHP = MaxHP;
 
         // 플레이어 생성
@@ -95,8 +89,8 @@ public class GameManager : MonoBehaviour
             newItemData.Type = EItemType.Number;
             int newNumber = UnityEngine.Random.Range(1, 10); // 1 ~ 9
 
-            // MulNumber가 등장하는 거 방지용 코드
-            while (newNumber == newRoundData.MulNumber)
+            // MulNumber 로 나눠지는 숫자가 등장하는 것을 방지
+            while (newNumber % newRoundData.MulNumber == 0)
             {
                 newNumber = UnityEngine.Random.Range(1, 10);
             }
@@ -147,16 +141,11 @@ public class GameManager : MonoBehaviour
         // 게임 중이면
         if (isRunningRound)
         {
-            // 생존 시간 증가
-            SurvivalTime += Time.deltaTime;
-
             // 연출 중이거나 잠시 멈춰야할 때는 멈추기
             if (!isPause)
             {
                 // 게이지 줄어들기
                 CurrentHP -= Time.deltaTime * DecreaseSpeed;
-
-
 
                 if (CurrentHP <= 0)
                 {
@@ -181,8 +170,6 @@ public class GameManager : MonoBehaviour
         if(result % CurrentRoundData.MulNumber == 0
             && result > CurrentRoundData.MinNumber)
         {
-            // 점수 누적
-            TotalScore += result;
             RoundClear();
         }
         else
@@ -210,8 +197,6 @@ public class GameManager : MonoBehaviour
         // 전투 성공 연출
         battleManager.Win();
 
-
-
         // 다음 라운드
         RoundCount++;
         StartRound();
@@ -232,7 +217,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         // 결과 화면 UI 보여주기
-        scoreManager.ShowResult(TotalScore, SurvivalTime);
+        resultUI.ResultPanel.SetActive(true);
     }
 }
 
