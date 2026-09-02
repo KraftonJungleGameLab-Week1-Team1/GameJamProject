@@ -30,13 +30,15 @@ public class Player : MonoBehaviour
         switch (attackIndex) {
             case 1:
                 animator.SetTrigger("SwordAttack1");
-
+                //BombEffect.explode();
                 break;
             case 2:
                 animator.SetTrigger("SwordAttack1");
+                //BonkEffect.BonkFlagOn();
                 break;
             case 3:
                 animator.SetTrigger("SwordAttack1");
+                //FlyEffct.FlyFlagOn();
                 break;
             
         }
