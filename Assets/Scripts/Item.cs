@@ -34,11 +34,13 @@ public class Item : MonoBehaviour
     {
         if (isHighlight)
         {
-            button.GetComponent<Image>().color = highlightColor;
+            button.interactable = false;
+            //button.GetComponent<Image>().color = highlightColor;
         }
         else
         {
-            button.GetComponent<Image>().color = baseColor;
+            button.interactable = true;
+            //button.GetComponent<Image>().color = baseColor;
         }
     }
 
