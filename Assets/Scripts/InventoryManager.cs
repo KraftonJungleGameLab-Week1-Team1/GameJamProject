@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour
         {
             Item newItem = ItemFactory.Instance.Instantiate(data);
             newItem.transform.SetParent(ItemListParentTr);
+            newItem.transform.localScale = Vector3.one;
 
             newItem.SetClickEvent(
                 () =>
