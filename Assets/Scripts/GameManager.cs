@@ -208,10 +208,10 @@ public class GameManager : MonoBehaviour
     public void PlayerHeal()
     {
         int healGuage = 0;
-        healGuage = 20 + RoundCount * 3;
-        if (healGuage > 50)
+        healGuage = 30 + RoundCount * 3;
+        if (healGuage > 60)
         {
-            healGuage = 50;
+            healGuage = 60;
         }
         CurrentHP += healGuage;
         if (CurrentHP > MaxHP)
