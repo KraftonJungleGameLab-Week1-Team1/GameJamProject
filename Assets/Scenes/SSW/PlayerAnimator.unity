@@ -1373,6 +1373,7 @@ MonoBehaviour:
   expressionManager: {fileID: 1003385357}
   scoreManager: {fileID: 7803292297927057044}
   descriptionText: {fileID: 160694240}
+  scoreText: {fileID: 503521965158213}
 --- !u!1 &620722712
 GameObject:
   m_ObjectHideFlags: 0
