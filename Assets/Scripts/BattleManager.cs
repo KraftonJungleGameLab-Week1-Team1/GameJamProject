@@ -77,7 +77,7 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator EnemyDelayTime()
     {
-        yield return new WaitForSeconds(0.7f); // 2초 동안 대기
+        yield return new WaitForSeconds(1.6f); // 2초 동안 대기
         enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
         enemy_Die = enemy.GetComponent<Enemy_Die>();
         Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
