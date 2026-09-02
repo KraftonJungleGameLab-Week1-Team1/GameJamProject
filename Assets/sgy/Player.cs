@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
 
     public Bomb BombEffect;
 
+    Animator animator;
+
     private void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -23,9 +25,20 @@ public class Player : MonoBehaviour
           //  Instantiate(slash, Body.transform.position, Body.transform.rotation);
     }
 
-    public void DoAttack()
+    public void DoAttack(int attackIndex)
     {
-
+        switch (attackIndex) {
+            case 1:
+                animator.SetTrigger("SwordAttack1");
+                break;
+            case 2:
+                animator.SetTrigger("SwordAttack2");
+                break;
+            case 3:
+                animator.SetTrigger("SwordAttack3");
+                break;
+            
+        }
         Instantiate(slash, Body.transform.position, Body.transform.rotation);
     }
 
