@@ -171,7 +171,9 @@ public class GameManager : MonoBehaviour
 
             // 점수 누적
             TotalScore += result;
-            StartCoroutine(earnedScoreOverlay.ShowEarnedScore(TotalScore));
+            yield return StartCoroutine(earnedScoreOverlay.ShowEarnedScore(TotalScore));
+
+            expressionManager.ResetComboTextSize();
             RoundClear();
 
             LastResult = result;

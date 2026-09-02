@@ -56,6 +56,7 @@ public class EarnedScoreOverlay : MonoBehaviour
         StartCoroutine(AudioManager.Instance.PlaySequence());
         yield return StartCoroutine(SetEarnedScoreText(score));
         yield return StartCoroutine(SetTotalScore(totalScore + score));
+
     }
 
     //IEnumerator ShowCoroutine()

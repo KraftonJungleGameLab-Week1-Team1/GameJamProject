@@ -23,10 +23,13 @@ public class ExpressionManager : MonoBehaviour
 	public int LastCombo = 0;
     public int CurrentCombo = 0;
     public float OriginFontSize;
+    public Color32 OriginFontColor;
 
     void Start()
 	{
         OriginPosition = HorizontalScrollRect.content.anchoredPosition;
+        OriginFontSize = ComboText.fontSize;
+        OriginFontColor = ComboText.color;
     }
 
 	void Update()
@@ -168,9 +171,32 @@ public class ExpressionManager : MonoBehaviour
             yield return null;
             ComboText.fontSize = OriginFontSize * flag;
         }
-
         ComboText.gameObject.SetActive(false);
         ComboText.fontSize = OriginFontSize;
+    }
+
+    public void SizeUpComboText()
+    {
+        ComboText.gameObject.SetActive(true);
+        ComboText.fontSize *= 1.1f;
+        ++CurrentCombo;
+        if (1 <= CurrentCombo && CurrentCombo <= 3)
+        { ComboText.color = new Color32(176, 232, 195, 255); }
+        else if (4 <= CurrentCombo && CurrentCombo <= 5)
+        { ComboText.color = new Color32(195, 230, 140, 255); }
+        else if (6 <= CurrentCombo && CurrentCombo <= 7)
+        { ComboText.color = new Color32(253, 221, 25, 255); }
+        else
+        { ComboText.color = new Color32(236, 3, 33, 255); }
+        ComboText.text = "x" + CurrentCombo;
+    }
+
+    public void ResetComboTextSize()
+    {
+        ComboText.fontSize = OriginFontSize;
+        ComboText.text = "x1";
+        ComboText.gameObject.SetActive(false);
+        ComboText.color = OriginFontColor;
     }
 
     public IEnumerator CalculateExpression()
@@ -182,7 +208,8 @@ public class ExpressionManager : MonoBehaviour
         foreach (ItemGroup itemGroup in ItemGroupList)
         {
             SetScrollPosition(itemGroup);
-            StartCoroutine(PopUpComboText());
+            SizeUpComboText();
+            //StartCoroutine(PopUpComboText());
             yield return StartCoroutine(itemGroup.PopUpResult(result));
             count++;
             switch (itemGroup.OperatorItem.ItemData.OperatorType)
