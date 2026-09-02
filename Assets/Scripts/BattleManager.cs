@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BattleManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class BattleManager : MonoBehaviour
     public Player player_attack;
 
     public int RandomAttackIndex;
+
+    public GameManager gameManager;
 
 
     void Start()
@@ -52,10 +55,10 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        
-        enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
-        enemy_Die = enemy.GetComponent<Enemy_Die>();
-        Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
+        //enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
+        //enemy_Die = enemy.GetComponent<Enemy_Die>();
+        //Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
+        StartCoroutine(EnemyDelayTime());
     }
 
     public void Win()
@@ -72,5 +75,14 @@ public class BattleManager : MonoBehaviour
         player_attack.Defeated();
         //Destroy(player);
     }
+    IEnumerator EnemyDelayTime()
+    {
+        yield return new WaitForSeconds(0.7f); // 2초 동안 대기
+        enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
+        enemy_Die = enemy.GetComponent<Enemy_Die>();
+        Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
+        Debug.Log("지연실행됨");
+    }
+
 }
 

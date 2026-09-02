@@ -76,9 +76,16 @@ public class GameManager : MonoBehaviour
         TargetInputType = EItemType.Number;
 
         RoundData newRoundData = new RoundData();
-
+    
         // 조건 설정
-        newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
+        if (RoundCount == 1)
+        {
+            newRoundData.MinNumber = UnityEngine.Random.Range(15, 21); // 15 ~ 20
+        }
+        else
+        {
+            newRoundData.MinNumber = Mathf.FloorToInt(UnityEngine.Random.Range(15, 21) + Mathf.Pow((float) (4 + (0.7f * RoundCount - 1)) , 2));
+        }
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
 
         descriptionText.text = $"{newRoundData.MinNumber}보다 높은 {newRoundData.MulNumber}의 배수 숫자를 만드시오.";
