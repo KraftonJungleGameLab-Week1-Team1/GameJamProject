@@ -95,61 +95,14 @@ public class GameManager : MonoBehaviour
 
         descriptionText.text = $"{newRoundData.MulNumber}의 배수 숫자를 만드시오.";
 
-        // 인벤토리 비우기
-        inventoryManager.DeleteItemList();
-
         // 인벤토리 아이템 설정
-        // 숫자 32개
-        for (int i = 0; i < 32; i++)
-        {
-            ItemData newItemData = new ItemData();
-
-            newItemData.Type = EItemType.Number;
-            int newNumber = UnityEngine.Random.Range(1, 10); // 1 ~ 9
-
-            //// MulNumber 로 나눠지는 숫자가 등장하는 것을 방지
-            //while (newNumber % newRoundData.MulNumber == 0)
-            //{
-            //    newNumber = UnityEngine.Random.Range(1, 10);
-            //}
-            newItemData.NumberValue = newNumber;
-
-            newRoundData.ItemDataList.Add(newItemData);
-        }
-        // 연산자 8개
-        for (int i = 0; i < 8; i++)
-        {
-            ItemData newItemData = new ItemData();
-
-            newItemData.Type = EItemType.Operator;
-            int randomOperatorType = UnityEngine.Random.Range(0, 3);
-            if (randomOperatorType == 0)
-            {
-                newItemData.OperatorType = EItemOperatorType.Plus;
-            }
-            else if (randomOperatorType == 1)
-            {
-                newItemData.OperatorType = EItemOperatorType.Minus;
-            }
-            else if (randomOperatorType == 2)
-            {
-                newItemData.OperatorType = EItemOperatorType.Multiply;
-            }
-
-            newRoundData.ItemDataList.Add(newItemData);
-        }
-
-        var temp = newRoundData.ItemDataList.OrderBy(item => Guid.NewGuid()).ToList();
-        newRoundData.ItemDataList = temp;
+        List<ItemData> newItemDataList = inventoryManager.ResetInventory();
+        newRoundData.ItemDataList = newItemDataList;
 
         CurrentRoundData = newRoundData;
 
         // 전투 등장 연출
         battleManager.SpawnEnemy();
-
-        // 인벤토리 아이템 등장 연출
-        inventoryManager.SetupItemList(CurrentRoundData.ItemDataList);
-        inventoryManager.UpdateHighlight();
 
         IsPause = false;
     }
