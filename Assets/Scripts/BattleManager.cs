@@ -56,10 +56,10 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        //enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
-        //enemy_Die = enemy.GetComponent<Enemy_Die>();
-        //Instantiate(LandingEffectPrefab, enemySpawnPoint.position, LandingEffectPrefab.transform.rotation);
-        StartCoroutine(EnemyDelayTime());
+        enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
+        enemy_Die = enemy.GetComponent<Enemy_Die>();
+        Instantiate(smokeEffectPrefab, enemySpawnPoint.position, smokeEffectPrefab.transform.rotation);
+        //StartCoroutine(EnemyDelayTime());
     }
 
     public void Win()

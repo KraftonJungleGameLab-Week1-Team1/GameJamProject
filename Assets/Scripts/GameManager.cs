@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -79,7 +80,8 @@ public class GameManager : MonoBehaviour
         TargetInputType = EItemType.Number;
 
         RoundData newRoundData = new RoundData();
-    
+        CurrentRoundData = newRoundData;
+
         // 조건 설정
         if (RoundCount == 1)
         {
@@ -93,19 +95,31 @@ public class GameManager : MonoBehaviour
         }
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
 
-        descriptionText.text = $"{newRoundData.MulNumber}의 배수 숫자를 만드시오.";
+        descriptionText.text = string.Empty;
 
-        // 인벤토리 아이템 설정
-        List<ItemData> newItemDataList = inventoryManager.ResetInventory();
-        newRoundData.ItemDataList = newItemDataList;
-        inventoryManager.UpdateHighlight();
+        IEnumerator Show()
+        {
+            yield return new WaitForSeconds(1);
 
-        CurrentRoundData = newRoundData;
+            // 전투 등장 연출
+            battleManager.SpawnEnemy();
 
-        // 전투 등장 연출
-        battleManager.SpawnEnemy();
+            yield return new WaitForSeconds(1);
 
-        IsPause = false;
+            // 인벤토리 아이템 생성
+            List<ItemData> newItemDataList = inventoryManager.ResetInventory();
+            newRoundData.ItemDataList = newItemDataList;
+            inventoryManager.UpdateHighlight();
+
+            //yield return new WaitForSeconds(1);
+
+            // 설명
+            descriptionText.text = $"{newRoundData.MinNumber}을 만들어라";
+
+            IsPause = false;
+        }
+
+        StartCoroutine(Show());
     }
 
     private void Update()
@@ -134,7 +148,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator IECompleteExpression()
     {
         IsPause = true;
-
 
         // 수식 계산 연출
         yield return expressionManager.CalculateExpression();
