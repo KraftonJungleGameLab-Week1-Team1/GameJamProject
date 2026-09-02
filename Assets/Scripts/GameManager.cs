@@ -34,8 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] TMP_Text descriptionText;
-
-
+    [SerializeField] TMP_Text scoreText;
 
     bool isRunningRound = false;
     bool isPause = false;
@@ -59,6 +58,7 @@ public class GameManager : MonoBehaviour
         RoundCount = 1;
         SurvivalTime = 0;
         TotalScore = 0;
+        scoreText.text = $"Score : {TotalScore}";
         CurrentHP = MaxHP;
 
         // 플레이어 생성
@@ -156,8 +156,6 @@ public class GameManager : MonoBehaviour
                 // 게이지 줄어들기
                 CurrentHP -= Time.deltaTime * DecreaseSpeed;
 
-
-
                 if (CurrentHP <= 0)
                 {
                     RoundFail();
@@ -183,6 +181,7 @@ public class GameManager : MonoBehaviour
         {
             // 점수 누적
             TotalScore += result;
+            scoreText.text = $"Score : {TotalScore}";
             RoundClear();
         }
         else
