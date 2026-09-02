@@ -41,7 +41,7 @@ public class ScoreManager : MonoBehaviour
 
     public void OnClickMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Title");
     }
 
 }
