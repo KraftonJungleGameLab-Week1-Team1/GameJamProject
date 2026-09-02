@@ -18,8 +18,8 @@ public class ItemGroup : MonoBehaviour
 
     public float OriginFontSize;
 
-    public float SizeUpSpeed;
-    public float SizeDownSpeed;
+    float sizeUpSpeed;
+    float sizeDownSpeed;
 
     void Start()
     {
@@ -55,10 +55,11 @@ public class ItemGroup : MonoBehaviour
         }
     }
 
-    public IEnumerator PopUpPreResult(int result)
+    public IEnumerator PopUpResult(int result)
     {
         NumberText.gameObject.SetActive(true);
         OriginFontSize = NumberText.fontSize;
+        NumberText.alpha = 1f;
         if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
         {
             result += ValueItem.ItemData.NumberValue;
@@ -77,7 +78,7 @@ public class ItemGroup : MonoBehaviour
         NumberText.fontSize = flag;
         while (flag < 1f)
         {
-            flag += Time.deltaTime * SizeUpSpeed;
+            flag += Time.deltaTime * 50f;
             yield return new WaitForSeconds(0.01f);
             NumberText.fontSize = OriginFontSize * flag;
         }
@@ -85,14 +86,54 @@ public class ItemGroup : MonoBehaviour
 
         while (flag > 0f)
         {
-            flag -= Time.deltaTime * SizeDownSpeed;
+            flag -= Time.deltaTime * 20f;
             yield return new WaitForSeconds(0.01f);
             NumberText.fontSize = OriginFontSize * flag;
+            NumberText.alpha = flag * 0.6f;
         }
 
         NumberText.gameObject.SetActive(false);
         NumberText.fontSize = OriginFontSize;
+    }
 
+    public IEnumerator PopUpPreResult(int result)
+    {
+        NumberText.gameObject.SetActive(true);
+        OriginFontSize = NumberText.fontSize;
+        NumberText.alpha = 1f;
+        if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Plus)
+        {
+            result += ValueItem.ItemData.NumberValue;
+        }
+        else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Minus)
+        {
+            result -= ValueItem.ItemData.NumberValue;
+        }
+        else if (OperatorItem.ItemData.OperatorType == EItemOperatorType.Multiply)
+        {
+            result *= ValueItem.ItemData.NumberValue;
+        }
 
+        NumberText.text = result.ToString();
+        float flag = 0f;
+        NumberText.fontSize = flag;
+        while (flag < 1f)
+        {
+            flag += Time.deltaTime * 40f;
+            yield return new WaitForSeconds(0.01f);
+            NumberText.fontSize = OriginFontSize * flag;
+        }
+        yield return new WaitForSeconds(0.2f);
+
+        while (flag > 0f)
+        {
+            flag -= Time.deltaTime * 10f;
+            yield return new WaitForSeconds(0.01f);
+            NumberText.fontSize = OriginFontSize * flag;
+            NumberText.alpha = flag * 0.6f;
+        }
+
+        NumberText.gameObject.SetActive(false);
+        NumberText.fontSize = OriginFontSize;
     }
 }

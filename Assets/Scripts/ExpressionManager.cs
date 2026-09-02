@@ -125,7 +125,7 @@ public class ExpressionManager : MonoBehaviour
         int result = ItemList[0].ItemData.NumberValue;
         foreach (ItemGroup itemGroup in ItemGroupList)
         {
-            yield return StartCoroutine(itemGroup.PopUpPreResult(result));
+            yield return StartCoroutine(itemGroup.PopUpResult(result));
 
             switch (itemGroup.OperatorItem.ItemData.OperatorType)
             {

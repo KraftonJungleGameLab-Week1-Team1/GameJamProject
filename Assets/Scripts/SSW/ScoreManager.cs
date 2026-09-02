@@ -1,44 +1,35 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+
 
 public class ScoreManager : MonoBehaviour
 {
     public TMP_Text scoreText;
-    public TMP_Text survivalTimeText;
+    int score;
 
-    [SerializeField] private ExpressionManager expressionManager;
-
-    public void ShowResult(int totalscore, float survivalTime)
-    {
-        gameObject.SetActive(true);
-
-        scoreText.text = totalscore.ToString();
-        survivalTimeText.text = FormatTime(survivalTime);
-    }
-
-    private string FormatTime(float time)
-    {
-        int totalSeconds = Mathf.FloorToInt(time);
-        int minutes = totalSeconds/60;
-        int seconds = totalSeconds%60;
-
-        return $"{minutes:00}:{seconds:00}";
-    }
+    public int Score {get {return score;} set {score = value; scoreText.text = score.ToString();}}
 
     void Start()
     {
-        gameObject.SetActive(false);
+        score = 0;
+        scoreText.text = score.ToString();
     }
 
-    public void OnClickRestart()
+    void Update()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        score = score + ((int)Time.deltaTime);
+        SetScore(score);
     }
 
-    public void OnClickMainMenu()
+    public int GetScore() {
+        return Score;
+    }
+
+    public void SetScore(int value)
     {
-        SceneManager.LoadScene("MainMenu");
+        score = value;
+        scoreText.text = score.ToString();
     }
 
 }
