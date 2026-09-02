@@ -82,7 +82,7 @@ public class ItemGroup : MonoBehaviour
             yield return null;
             NumberText.fontSize = OriginFontSize * flag;
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
 
         while (flag > 0f)
         {
