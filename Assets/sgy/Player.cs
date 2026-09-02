@@ -46,9 +46,17 @@ public class Player : MonoBehaviour
         
     }
 
-    public void PlaySlash()
+    public void PlaySlash(int attackIndex)
     {
-        Instantiate(slash, Body.transform.position, Body.transform.rotation);
+        if (attackIndex == 1)
+        {
+            Instantiate(slash, Body.transform.position, Quaternion.Euler(-24.406f, -2.407f, -0.063f));     
+        }
+        if (attackIndex == 3)
+        {
+            Instantiate(slash, Body.transform.position, Quaternion.Euler(-43.407f, 14.734f, 8.395f));    
+        }
+        
     }
 
     public void PlayLandingEffect()
