@@ -135,7 +135,9 @@ public class GameManager : MonoBehaviour
     {
         IsPause = true;
 
+
         // 수식 계산 연출
+        earnedScoreOverlay.SetTotalScoreText(TotalScore);
         yield return expressionManager.CalculateExpression();
 
         IsPause = false;

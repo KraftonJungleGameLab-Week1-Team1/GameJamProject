@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EarnedScoreOverlay : MonoBehaviour
 {
@@ -9,8 +10,23 @@ public class EarnedScoreOverlay : MonoBehaviour
 
     public RectTransform destTr;
 
+    void Start()
+    {
+    }
+
     public void SetTotalScoreText(int score)
     {
+        StartCoroutine(SetTotalScore(score));
+    }
+
+    public IEnumerator SetTotalScore(int score)
+    {
+        for(int i = 0; i < score; ++i)
+        {
+            totalScoreText.text = $"Score : {i}";
+            yield return null;
+        }
+
         totalScoreText.text = $"Score : {score}";
     }
     public void SetEarnedScoreText(int score)
@@ -21,6 +37,8 @@ public class EarnedScoreOverlay : MonoBehaviour
     public void ShowEarnedScore(int score)
     {
         SetEarnedScoreText(score);
+
+        SetTotalScoreText(score);
         //Start ShowCoroutine
     }
 
