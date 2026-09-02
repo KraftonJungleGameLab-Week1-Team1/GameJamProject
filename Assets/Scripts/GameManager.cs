@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
             newItemData.Type = EItemType.Number;
             int newNumber = UnityEngine.Random.Range(1, 10); // 1 ~ 9
 
-            // MulNumber가 등장하는 거 방지용 코드
-            while (newNumber == newRoundData.MulNumber)
+            // MulNumber 로 나눠지는 숫자가 등장하는 것을 방지
+            while (newNumber % newRoundData.MulNumber == 0)
             {
                 newNumber = UnityEngine.Random.Range(1, 10);
             }
