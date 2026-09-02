@@ -1617,7 +1617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958447847897110782, guid: 7b50646f49e55714dbfeeb1cee43c332, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24a26d7c6fd13a4d88423098160bb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
+  MaxHP: 200
   DecreaseSpeed: 3
   RoundCount: 0
   CurrentRoundData:
@@ -2150,6 +2150,7 @@ MonoBehaviour:
   SurvivalTime: 0
   IsRunningRound: 0
   IsPause: 0
+  LastPreResult: 0
   LastResult: 0
   inventoryManager: {fileID: 238503749}
   battleManager: {fileID: 461081429}
