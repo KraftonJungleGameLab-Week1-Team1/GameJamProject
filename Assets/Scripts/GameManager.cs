@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
         // 인벤토리 아이템 설정
         List<ItemData> newItemDataList = inventoryManager.ResetInventory();
         newRoundData.ItemDataList = newItemDataList;
+        inventoryManager.UpdateHighlight();
 
         CurrentRoundData = newRoundData;
 
