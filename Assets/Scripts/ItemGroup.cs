@@ -134,7 +134,7 @@ public class ItemGroup : MonoBehaviour
         NumberText.gameObject.SetActive(false);
         NumberText.fontSize = OriginFontSize;
 
-        if(GameManager.Instance.CurrentRoundData.MinNumber == result)
+        if(GameManager.Instance.CurrentRoundData.TargetNumber == result)
         { GameManager.Instance.CompleteExpression(); }
     }
 }
