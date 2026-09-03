@@ -25,7 +25,7 @@ public class EarnedScoreOverlay : MonoBehaviour
             totalScoreText.text = $"Score : {i}";
             yield return null;
         }
-        totalScore += score;
+        totalScore = score;
         totalScoreText.text = $"Score : {score}";
     }
     public IEnumerator SetEarnedScoreText(int score)
