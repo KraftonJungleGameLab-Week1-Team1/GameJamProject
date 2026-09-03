@@ -16,19 +16,8 @@ public class ItemGroup : MonoBehaviour
 
     public float OriginFontSize;
 
-    float sizeUpSpeed;
-    float sizeDownSpeed;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private float sizeUpSpeed;
+    private float sizeDownSpeed;
 
     public void SetItemGroup(Item operatorItem, Item valueItem)
     {

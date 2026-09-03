@@ -83,8 +83,6 @@ public class ExpressionManager : MonoBehaviour
             StartCoroutine(ItemGroupList[ItemGroupList.Count - 1].PopUpPreResult(LastNum));
 
             // 중간 결과 값 캐시
-
-
             switch (ItemGroupList[ItemGroupList.Count - 1].OperatorItem.ItemData.OperatorType)
             {
                 case EItemOperatorType.Plus:

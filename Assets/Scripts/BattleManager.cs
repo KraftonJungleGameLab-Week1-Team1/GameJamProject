@@ -4,90 +4,65 @@ using UnityEngine.VFX;
 
 public class BattleManager : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public Transform playerSpawnPoint;
+    public GameManager gameManager;
+    public GameObject PlayerPrefab;
+    public Transform PlayerSpawnPoint;
 
-    public GameObject enemyPrefab;
-    public Transform enemySpawnPoint;
+    public GameObject EnemyPrefab;
+    public Transform EnemySpawnPoint;
 
-    public VisualEffect smokeEffectPrefab;
+    public VisualEffect SmokeEffectPrefab;
 
-    public Enemy_Die enemy_Die;
+    public EnemyDie enemyDie;
 
-    public Player player_attack;
+    public Player playerAttack;
 
     public int RandomAttackIndex;
 
-    public GameManager gameManager;
+    public int randomAttackStartIndex;
 
+    public int randomAttackEndIndex;
 
-    void Start()
-    {
-        //enemy_Die = GetComponent<Enemy_Die>();
-        //player_attack = GetComponent<Player>();
-    }
+    private GameObject player;
+    private GameObject enemy;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
             Win();
-            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
             SpawnEnemy();
-            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Win();
-            //Instantiate(slash, Body.transform.position, Body.transform.rotation);
         }
     }
 
-    GameObject player;
-    GameObject enemy;
-
     public void SpawnPlayer()
     {
-        player = Instantiate(playerPrefab, playerSpawnPoint.position, playerPrefab.transform.rotation);
-        player_attack = player.GetComponent<Player>();
-        Instantiate(smokeEffectPrefab, playerSpawnPoint.position, smokeEffectPrefab.transform.rotation);
+        player = Instantiate(PlayerPrefab, PlayerSpawnPoint.position, PlayerPrefab.transform.rotation);
+        playerAttack = player.GetComponent<Player>();
+        Instantiate(SmokeEffectPrefab, PlayerSpawnPoint.position, SmokeEffectPrefab.transform.rotation);
     }
 
     public void SpawnEnemy()
     {
-        enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
-        enemy_Die = enemy.GetComponent<Enemy_Die>();
-        Instantiate(smokeEffectPrefab, enemySpawnPoint.position, smokeEffectPrefab.transform.rotation);
-        //StartCoroutine(EnemyDelayTime());
+        enemy = Instantiate(EnemyPrefab, EnemySpawnPoint.position, EnemyPrefab.transform.rotation);
+        enemyDie = enemy.GetComponent<EnemyDie>();
+        Instantiate(SmokeEffectPrefab, EnemySpawnPoint.position, SmokeEffectPrefab.transform.rotation);
     }
 
     public void Win()
     {
-
-        enemy_Die.Defeated();
-        RandomAttackIndex = Random.Range(1, 5);
-        player_attack.DoAttack(RandomAttackIndex);
-        //Destroy(enemy);
+        enemyDie.Defeated();
+        RandomAttackIndex = Random.Range(randomAttackStartIndex, randomAttackEndIndex);
+        playerAttack.DoAttack(RandomAttackIndex);
     }
 
     public void Lose()
     {
-        player_attack.Defeated();
-        //Destroy(player);
+        playerAttack.Defeated();
     }
-    IEnumerator EnemyDelayTime()
-    {
-        yield return new WaitForSeconds(1.6f); // 2초 동안 대기
-        enemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemyPrefab.transform.rotation);
-        enemy_Die = enemy.GetComponent<Enemy_Die>();
-        Instantiate(smokeEffectPrefab, enemySpawnPoint.position, smokeEffectPrefab.transform.rotation);
-        Debug.Log("지연실행됨");
-    }
-
 }
 
