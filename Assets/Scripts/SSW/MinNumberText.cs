@@ -23,7 +23,7 @@ public class MinNumberText : MonoBehaviour
 
             enemyHealthText.transform.position = enemyHead.position + offset;
 
-            enemyHealthText.text = GameManager.Instance.CurrentRoundData.MinNumber.ToString(); 
+            enemyHealthText.text = GameManager.Instance.CurrentRoundData.TargetNumber.ToString(); 
         }
     }
 }

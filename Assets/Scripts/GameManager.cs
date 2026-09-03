@@ -84,12 +84,12 @@ public class GameManager : MonoBehaviour
         // 조건 설정
         if (RoundCount == 1)
         {
-            newRoundData.MinNumber = UnityEngine.Random.Range(15, 21) * 4; // 15 ~ 20
+            newRoundData.TargetNumber = UnityEngine.Random.Range(15, 21) * 4; // 15 ~ 20
             //newRoundData.MinNumber = 15;
         }
         else
         {
-            newRoundData.MinNumber = Mathf.FloorToInt(UnityEngine.Random.Range(15, 21) *4 + Mathf.Pow((float) (7 + (0.7f * RoundCount - 1)) , 2));
+            newRoundData.TargetNumber = Mathf.FloorToInt(UnityEngine.Random.Range(15, 21) *4 + Mathf.Pow((float) (7 + (0.7f * RoundCount - 1)) , 2));
             //newRoundData.MinNumber = 15 + Mathf.Pow((float)(4 + (0.7f * RoundCount - 1)), 2);
         }
         newRoundData.MulNumber = UnityEngine.Random.Range(3, 10); // 3 ~ 9
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
             //yield return new WaitForSeconds(1);
 
             // 설명
-            descriptionText.text = $"{newRoundData.MinNumber}을 만들어라";
+            descriptionText.text = $"{newRoundData.TargetNumber}을 만들어라";
 
             resetButton.interactable = true;
             emptyButton.interactable = true;
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
         int result = expressionManager.LastNum;
         //if (result % CurrentRoundData.MulNumber == 0
         //    && result >= CurrentRoundData.MinNumber)
-        if (result == CurrentRoundData.MinNumber)
+        if (result == CurrentRoundData.TargetNumber)
         {
             // 콤보 계산
             result *= expressionManager.LastCombo;
@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
 [Serializable]
 public class RoundData
 {
-    public float MinNumber; // 최소 숫자 조건
+    public float TargetNumber; // 최소 숫자 조건
     public float MulNumber; // 배수 숫자 조건
 
     public List<ItemData> ItemDataList = new List<ItemData>(); // 아이템
